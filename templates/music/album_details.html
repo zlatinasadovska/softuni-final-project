@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}{{ album.title }} - Echo Music{% endblock %}
+
+{% block content %}
+    <div class="album-details-container">
+        <h1>{{ album.title }} - {{ album.artist.name }}</h1>
+        <p>Released on: {{ album.release_date }}</p>
+
+        <!-- Display album cover image -->
+        {% if album.cover_image %}
+            <img src="{{ album.cover_image }}" alt="{{ album.title }} cover image">
+        {% endif %}
+
+        <h2>Tracks</h2>
+        <ul>
+            {% for track in tracks %}
+                <li>
+                    <a href="{% url 'track_detail' spotify_id=track.spotify_id %}">
+                        {{ track.title }}
+                    </a>
+                </li>
+            {% empty %}
+                <li>No tracks available.</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

@@ -1,0 +1,119 @@
+/* Register Page Styling */
+.register-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px); /* Adjust for header/footer */
+    padding: 20px;
+}
+
+/* Register Box Styling */
+.register-box {
+    max-width: 400px;
+    width: 100%;
+    margin: 80px auto; /* Center the form with reduced margin for compactness */
+    padding: 20px 40px; /* Add more padding on the sides (30px) */
+    background-color: #000;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; /* Ensure elements stretch to fill the container */
+    gap: 15px; /* Reduce gap between form elements */
+}
+
+/* Heading inside the box */
+.register-box h2 {
+    color: #fff;
+    margin-bottom: 10px; /* Reduced margin for compactness */
+    font-size: 22px; /* Slightly smaller font size */
+    transition: color 0.3s ease;
+    align-self: center;
+}
+
+/* Hover effect for the heading */
+.register-box h2:hover {
+    color: #2F9B6A;
+}
+
+/* Form inputs */
+.register-box form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; /* Ensure form items stretch */
+}
+
+.register-box form input[type="text"],
+.register-box form input[type="password"],
+.register-box form input[type="email"],
+.register-box form select {
+    width: 100%; /* Full width */
+    padding: 12px; /* Add more padding to inputs */
+    margin: 10px 0; /* Reduced margin for compact layout */
+    border: 1px solid #333;
+    border-radius: 5px;
+    background-color: #121212;
+    color: #fff;
+}
+
+/* Adjust space between password field and register button */
+.register-box form input[type="password"] {
+    margin-bottom: 15px; /* Less space after the password field */
+}
+
+/* Submit button */
+.register-box form button {
+    width: 30%; /* Button takes full width */
+    padding: 10px;
+    background-color: #2F9B6A;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 10px; /* Reduced space between button and fields */
+    align-self: center;
+}
+
+/* Button hover effect */
+.register-box form button:hover {
+    background-color: #257e56;
+    transform: scale(1.05);
+}
+
+/* Error message styling (hidden by default) */
+.error-message {
+    color: #ff0000;
+    font-size: 14px;
+    display: none; /* Hide error messages initially */
+}
+
+/* Display error message when active */
+.error-message.active {
+    display: block;
+    margin-top: 5px;
+    text-align: left;
+}
+
+/* "Already have an account?" Styling */
+.register-box p {
+    color: #b3b3b3; /* Subtle gray for the text */
+    font-size: 14px;
+    margin-top: 15px; /* Space between form and text */
+}
+
+/* Link Styling */
+.register-box p a {
+    color: #2F9B6A; /* Green color for the link */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Make the link stand out */
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover Effect for Link */
+.register-box p a:hover {
+    color: #1d6f49; /* Darker green on hover */
+    transform: scale(1.05); /* Slightly enlarge the link */
+}

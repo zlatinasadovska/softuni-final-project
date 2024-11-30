@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}{{ spotify_track.title }} - Echo Music{% endblock %}
+
+{% block content %}
+    <div class="track-details-container">
+        <h2 class="track-title">{{ spotify_track.title }}</h2>
+        <p class="track-artist">{{ spotify_track.artist.name }} - {{ spotify_track.album.title }}</p>
+
+        <!-- Display the track image -->
+        <div class="track-image">
+            {% if spotify_track.track_image %}
+                <img src="{{ spotify_track.track_image }}" alt="{{ spotify_track.title }} cover image">
+            {% else %}
+                <p>No cover image available.</p>
+            {% endif %}
+        </div>
+
+        <!-- Audio Player Section -->
+        <div class="audio-player">
+            {% if spotify_track.preview_url %}
+                <audio controls>
+                    <source src="{{ spotify_track.preview_url }}" type="audio/mp3">
+                    Your browser does not support the audio element.
+                </audio>
+            {% else %}
+                <p>Audio preview not available for this track.</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

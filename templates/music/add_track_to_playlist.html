@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Add Track to Playlist - Echo Music{% endblock %}
+
+{% block content %}
+    <h2>Add Track to Playlist</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Track</button>
+    </form>
+{% endblock %}

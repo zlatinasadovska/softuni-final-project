@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="search-results-container">
+        <h1 class="page-title">Search Results</h1>
+
+        <!-- Search form -->
+        <form method="get" action="{% url 'search' %}" class="search-form">
+            <label for="search" class="search-label">Search for your favorite tracks</label>
+            <input type="text" name="q" id="search" value="{{ query }}" class="search-input" placeholder="Search...">
+            <button type="submit" class="search-button">Search</button>
+        </form>
+
+        {% if query %}
+            <p class="search-query-info">Results for "{{ query }}":</p>
+
+            <div class="results-section">
+                <!-- Display Tracks -->
+                {% if tracks %}
+                    <h3 class="results-heading">Tracks</h3>
+                    <div class="results-list">
+                        {% for track in tracks %}
+                            <div class="result-item">
+                                <div class="result-info">
+                                    <h4>{{ track.title }} by {{ track.artist.name }}</h4>
+                                    <p>{{ track.album.name }}</p>
+                                    <a href="{% url 'track_detail' spotify_id=track.spotify_id %}"
+                                       class="result-detail-link">View Track Details</a>
+
+                                </div>
+
+                                <!-- Add to Playlist Form -->
+                                <div class="add-to-playlist-form">
+                                    <form method="get" action="{% url 'add_to_playlist' track.id %}">
+                                        <label for="playlist_id" class="playlist-label">Add to Playlist:</label>
+                                        <select name="playlist_id" id="playlist_id" required class="playlist-select">
+                                            <option value="">Select Playlist</option>
+                                            {% for playlist in request.user.playlists.all %}
+                                                <option value="{{ playlist.id }}">{{ playlist.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <button type="submit" class="add-to-playlist-button">Add to Playlist</button>
+                                    </form>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <!-- Display Albums -->
+                {% if albums %}
+                    <h3 class="results-heading">Albums</h3>
+                    <div class="results-list">
+                        {% for album in albums %}
+                            <div class="result-item">
+                                <h4><a href="{% url 'album_detail' spotify_id=album.spotify_id %}"
+                                       class="result-detail-link">{{ album.title }} by {{ album.artist.name }}</a></h4>
+
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <!-- Display Artists -->
+                {% if artists %}
+                    <h3 class="results-heading">Artists</h3>
+                    <div class="results-list">
+                        {% for artist in artists %}
+                            <div class="result-item">
+                                <h4><a href="{% url 'artist_detail' artist.id %}"
+                                       class="result-detail-link">{{ artist.name }}</a></h4>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <!-- No results found message -->
+                {% if not tracks and not albums and not artists %}
+                    <p class="no-results">No results found.</p>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

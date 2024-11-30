@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Profile - Echo Music{% endblock %}
+
+{% block content %}
+
+    <header>
+        <nav>
+            <div class="nav-container">
+                <!-- Logo Section -->
+                <div class="logo-container">
+                    <a href="{% url 'home' %}">
+                        <img src="{% static 'images/logo.png' %}" alt="Echo Logo" class="logo">
+                    </a>
+                </div>
+
+                <!-- Navigation Links (Home, Profile, Login, Register) Section -->
+                <div class="nav-links-container">
+                    <ul class="nav-links">
+                        <li><a href="{% url 'home' %}">Home</a></li>
+
+                        <!-- Show Profile link if the user is authenticated -->
+                        {% if user.is_authenticated %}
+                            <li><a href="{% url 'profile' %}">Profile</a></li>
+                        {% else %}
+                            <!-- Show Login and Register if the user is NOT authenticated -->
+                            <li><a href="{% url 'login' %}">Login</a></li>
+                            <li><a href="{% url 'register' %}">Register</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+                <!-- Search Form -->
+                <div class="search-container">
+                    <form method="get" action="{% url 'search' %}">
+                        <input type="text" name="q" placeholder="Search for Tracks, Albums, or Artists">
+                        <button type="submit">Search</button>
+                    </form>
+                </div>
+
+                <!-- Settings Button (only show if user is authenticated) -->
+                {% if user.is_authenticated %}
+                    <div class="dropdown">
+                        <input type="checkbox" id="settings-toggle" class="settings-toggle">
+                        <label for="settings-toggle" class="settings-btn">Settings</label>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url 'logout' %}" class="dropdown-item">Logout</a></li>
+                            <li><a href="{% url 'delete_profile' %}" class="dropdown-item">Delete Profile</a></li>
+                        </ul>
+                    </div>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+
+
+
+
+    <div class="profile-page-container">
+        <!-- Profile Card Section -->
+        <div class="profile-card">
+            {% if user.profile_picture %}
+                <img src="{{ user.profile_picture.url }}" alt="Profile Picture" class="profile-picture">
+            {% else %}
+                <div class="placeholder-picture">No Picture</div>
+            {% endif %}
+            <h2>{{ user.username }}</h2>
+            <p class="email">Email: {{ user.email }}</p>
+        </div>
+
+        <!-- Profile Picture Update Section -->
+        <form class="profile-form" method="post" enctype="multipart/form-data"
+              action="{% url 'update_profile_picture' %}">
+            {% csrf_token %}
+            <label for="profile_picture" class="form-label">Update Profile Picture</label>
+            <input type="file" name="profile_picture" id="profile_picture" class="form-input">
+            <button type="submit" class="primary-button">Upload</button>
+        </form>
+
+        <!-- Playlist Section -->
+        <div class="playlist-section">
+            <h3>Your Playlists</h3>
+            {% if playlists %}
+                <ul class="playlist-list">
+                    {% for playlist in playlists %}
+                        <li class="playlist-item">
+                            <a href="{% url 'playlist_detail' pk=playlist.pk %}"
+                               class="playlist-name">{{ playlist.name }}</a>
+                            <a href="{% url 'delete_playlist' pk=playlist.pk %}" class="delete-playlist">Delete</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="no-playlists">You haven't created any playlists yet.</p>
+            {% endif %}
+            <a href="{% url 'create_playlist' %}" class="primary-link">Create a New Playlist</a>
+        </div>
+    </div>
+{% endblock %}

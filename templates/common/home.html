@@ -1,0 +1,207 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Home - Echo Music{% endblock %}
+
+{% block content %}
+
+    <header>
+        <nav>
+            <div class="nav-container">
+                <!-- Logo Section -->
+                <div class="logo-container">
+                    <a href="{% url 'home' %}">
+                        <img src="{% static 'images/logo.png' %}" alt="Echo Logo" class="logo">
+                    </a>
+                </div>
+
+                <!-- Navigation Links (Home, Profile, Login, Register) Section -->
+                <div class="nav-links-container">
+                    <ul class="nav-links">
+                        <li><a href="{% url 'home' %}">Home</a></li>
+
+                        <!-- Show Profile link if the user is authenticated -->
+                        {% if user.is_authenticated %}
+                            <li><a href="{% url 'profile' %}">Profile</a></li>
+                        {% else %}
+                            <!-- Show Login and Register if the user is NOT authenticated -->
+                            <li><a href="{% url 'login' %}">Login</a></li>
+                            <li><a href="{% url 'register' %}">Register</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+                <!-- Search Form -->
+                <div class="search-container">
+                    <form method="get" action="{% url 'search' %}">
+                        <input type="text" name="q" placeholder="Search for Tracks, Albums, or Artists">
+                        <button type="submit">Search</button>
+                    </form>
+                </div>
+
+                <!-- Settings Button (only show if user is authenticated) -->
+                {% if user.is_authenticated %}
+                    <div class="dropdown">
+                        <input type="checkbox" id="settings-toggle" class="settings-toggle">
+                        <label for="settings-toggle" class="settings-btn">Settings</label>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url 'logout' %}" class="dropdown-item">Logout</a></li>
+                            <li><a href="{% url 'delete_profile' %}" class="dropdown-item">Delete Profile</a></li>
+                        </ul>
+                    </div>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+    
+    <main class="home-container">
+        <!-- Content Section -->
+        {% if user.is_authenticated %}
+            <div class="hero-section">
+                <h1 class="hero-title">Welcome to <span class="highlight">your profile!</span></h1>
+            </div>
+
+            <div class="recommendations-section">
+            <h2 class="section-title">Recommended</h2>
+            <p class="section-description">Curated artists just for you.</p>
+
+            <!-- Artists Section -->
+            <div class="recommendations-container">
+                <h3 class="section-subtitle">Featured Artists</h3>
+                <div class="recommendations-items">
+                    {% for artist in featured_artists %}
+                        <a href="{% url 'artist_detail' artist.pk %}" class="recommendation-item">
+                            <!-- Check if the artist has an image -->
+                            {% if artist.profile_picture %}
+                                <div class="recommendation-image-container">
+                                    <img src="{{ artist.profile_picture }}" alt="{{ artist.name }}"
+                                         class="recommendation-image">
+                                </div>
+                            {% else %}
+                                <div class="recommendation-image-container">
+                                    <img src="{% static 'images/logo.png' %}" alt="Default Image"
+                                         class="recommendation-image default-logo">
+                                </div>
+                            {% endif %}
+                            <div class="recommendation-info">
+                                <h3>{{ artist.name }}</h3>
+                                <p>Explore</p>
+                            </div>
+                        </a>
+                    {% empty %}
+                        <p>No featured artists available.</p>
+                    {% endfor %}
+                </div>
+            </div>
+
+        {% else %}
+            <div class="hero-section">
+                <h1 class="hero-title">Welcome to <span class="highlight">Echo!</span></h1>
+            </div>
+
+            <div class="carousel-container">
+                <div class="carousel-overlay">
+                    <h1 class="carousel-text">Echoing your favorite music...</h1>
+                </div>
+                <div class="carousel">
+                    <img src="{% static 'images/adele.png' %}" alt="Slide 1" class="carousel-slide">
+                    <img src="{% static 'images/eminem.jpg' %}" alt="Slide 2" class="carousel-slide">
+                    <img src="{% static 'images/david.jpg' %}" alt="Slide 3" class="carousel-slide">
+                    <img src="{% static 'images/selena.jpg' %}" alt="Slide 4" class="carousel-slide">
+                    <img src="{% static 'images/abba.jpg' %}" alt="Slide 5" class="carousel-slide">
+                    <img src="{% static 'images/beatles.jpg' %}" alt="Slide 6" class="carousel-slide">
+                    <img src="{% static 'images/michael.jpg' %}" alt="Slide 7" class="carousel-slide">
+                </div>
+            </div>
+
+            <!-- Testimonial Section Begin -->
+            <section class="testimonial spad set-bg" data-setbg="img/testimonial/purple.jpg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="section-title center-title">
+                                <h2>What do our clients say?</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="testimonial__slider owl-carousel">
+                            <div class="testimonial__item">
+                                <div class="testimonial__text">
+                                    <p>Echo makes discovering new tunes so easy!</p>
+                                </div>
+                                <div class="testimonial__author">
+                                    <div class="testimonial__author__pic">
+                                        <img src="{% static 'images/logo.png' %}" alt="Echo Logo" class="logo">
+                                    </div>
+                                    <div class="testimonial__author__text">
+                                        <h5>Alex Turner</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="testimonial__item">
+                                <div class="testimonial__text">
+                                    <p>I love creating playlists with Echo.</p>
+                                </div>
+                                <div class="testimonial__author">
+                                    <div class="testimonial__author__pic">
+                                        <img src="{% static 'images/logo.png' %}" alt="Echo Logo" class="logo">
+                                    </div>
+                                    <div class="testimonial__author__text">
+                                        <h5>Sophia Martinez</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="testimonial__item">
+                                <div class="testimonial__text">
+                                    <p>Echo finds my favorite tracks in one place!</p>
+                                </div>
+                                <div class="testimonial__author">
+                                    <div class="testimonial__author__pic">
+                                        <img src="{% static 'images/logo.png' %}" alt="Echo Logo" class="logo">
+                                    </div>
+                                    <div class="testimonial__author__text">
+                                        <h5>Jackson Reed</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Testimonial Section End -->
+
+            <section class="stats-section">
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <h3 class="stat-number">100M</h3>
+                        <p>Songs Available</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3 class="stat-number">1M</h3>
+                        <p>Daily Listens</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3 class="stat-number">500K</h3>
+                        <p>Playlists Created</p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="quote-section">
+                <img src="{% static 'images/quotes.jpg' %}" alt="Background Image" class="quote-background">
+
+                <div class="quote-container">
+                    <div class="quote-text">"Music can change the world because it can change people." — Bono</div>
+                    <div class="quote-text">"Where words fail, music speaks." — Hans Christian Andersen</div>
+                    <div class="quote-text">"Music gives a soul to the universe." — Plato</div>
+                </div>
+            </div>
+
+            <!-- Login Prompt -->
+            <div class="login-prompt">
+                <p><a href="{% url 'login' %}" class="primary-link">Login</a> to start creating your personalized
+                    playlists.</p>
+            </div>
+        {% endif %}
+    </main>
+{% endblock %}

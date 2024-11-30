@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Echo Music App - Manage your playlists and discover new music.">
+    <meta name="author" content="Echo Team">
+    <title>{% block title %}Echo{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'styles/general.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/login.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/main.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/playlist.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/playlist-creation.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/register.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/search-bar.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/search-results.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/track-details.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/album-details.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/artist-details.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/responsive.css' %}">
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+<main>
+    {% block content %}{% endblock %}
+</main>
+<footer>
+    <p>&copy; 2024 Echo Music App. All rights reserved.</p>
+</footer>
+{% block extra_body %}{% endblock %}
+</body>
+</html>
