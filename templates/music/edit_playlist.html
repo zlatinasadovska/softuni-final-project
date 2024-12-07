@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Playlist Name{% endblock %}
+
+{% block content %}
+<div class="edit-playlist-container">
+    <h2>Edit Playlist Name</h2>
+    <p>Change the name of your playlist below:</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_name">New Playlist Name</label>
+            <input type="text" name="name" value="{{ playlist.name }}" id="id_name" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-success">Save</button>
+        <a href="{% url 'playlist_detail' playlist.pk %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

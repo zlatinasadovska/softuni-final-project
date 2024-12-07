@@ -1,0 +1,350 @@
+/* Playlist Page Layout */
+.playlist-page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 50px 20px; /* Increase top padding for better spacing */
+    max-width: 900px; /* Limit the max width */
+    margin: 40px auto;
+    background-color: #181818;
+    border-radius: 12px; /* Slightly rounded corners for a softer feel */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7); /* Stronger shadow for depth */
+    color: #b3b3b3;
+}
+
+/* Playlist Card */
+.playlist-card {
+    width: 100%;
+    max-width: 600px; /* Keep the width consistent */
+    margin-bottom: 30px; /* More space between playlist cards */
+    background-color: #000000; /* Slightly lighter black for better contrast */
+    border-radius: 12px; /* Rounded corners */
+    padding: 25px; /* Increased padding for a more spacious feel */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    transition: box-shadow 0.3s ease; /* Smooth hover effect */
+}
+
+.playlist-card:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7); /* Hover effect for cards */
+}
+
+/* Playlist Title */
+.playlist-title {
+    font-size: 30px; /* Slightly larger title for emphasis */
+    color: #fff;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 600; /* Bold title for prominence */
+}
+
+/* Playlist Tracks List */
+.playlist-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Playlist Item */
+.playlist-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px; /* Add more padding for spacious feel */
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    margin-bottom: 15px; /* More spacing between items */
+    width: 100%;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.playlist-item:hover {
+    background-color: #333; /* Lighter hover effect */
+}
+
+/* Track Name */
+.track-name {
+    text-decoration: none;
+    color: #2F9B6A;
+    font-weight: 500; /* Slightly lighter weight for readability */
+    flex-grow: 1;
+    font-size: 18px; /* Slightly larger font size */
+    white-space: nowrap;
+    overflow: visible;
+    text-overflow: unset;
+    padding-right: 30px; /* Ensure space for remove button */
+    max-width: calc(100% - 120px); /* Adjust space for remove button */
+    letter-spacing: 0.5px; /* Slight letter spacing for readability */
+}
+
+/* Remove Button (Right aligned) */
+.delete-button {
+    background-color: #FF6F61;
+    color: #fff;
+    border: none;
+    padding: 10px 20px; /* More padding for better button size */
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px; /* Larger button text */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-left: auto; /* Push button to the right */
+    display: flex;
+    align-items: center;
+}
+
+/* Delete Button hover effect */
+.delete-button:hover {
+    background-color: #cc584e;
+    transform: scale(1.05);
+}
+
+/* Container for the buttons (Change Name and Add Track Buttons) */
+.playlist-actions {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: center; /* Center buttons horizontally */
+    gap: 12px; /* Add space between buttons */
+    margin-top: 10px; /* Reduced space before the buttons */
+    margin-bottom: 20px; /* Add space after the buttons */
+}
+
+/* Add Track Button */
+.add-track-button {
+    background-color: #2F9B6A;
+    color: #fff;
+    font-size: 13px; /* Smaller font size */
+    padding: 6px 12px; /* Smaller padding */
+    border: none;
+    border-radius: 6px; /* Slightly smaller border-radius */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-block; /* Ensure the button takes up only necessary width */
+    text-decoration: none; /* Remove underline */
+}
+
+/* Add Track Button hover effect */
+.add-track-button:hover {
+    background-color: #257e56;
+    transform: scale(1.05);
+}
+
+/* Change Name Button */
+.primary-button {
+    background-color: #2F9B6A;
+    color: #fff;
+    padding: 6px 12px; /* Smaller padding */
+    border: none;
+    border-radius: 6px; /* Slightly smaller border-radius */
+    cursor: pointer;
+    font-size: 13px; /* Smaller font size */
+    transition: background-color 0.3s ease;
+    display: inline-block; /* Ensure the button takes up only necessary width */
+    text-decoration: none; /* Remove underline */
+}
+
+/* Change Name Button hover effect */
+.primary-button:hover {
+    background-color: #257e56;
+}
+
+/* No Tracks Message */
+.no-tracks-message {
+    color: #b3b3b3;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 20px;
+    font-style: italic;
+}
+
+/* Playlist Name Input */
+.playlist-name-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    background-color: #fff;
+    color: #333;
+}
+
+/* Profile Playlist Section */
+.profile-playlist-section {
+    margin: 30px auto;
+    padding: 50px;
+    background-color: #000000;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 900px; /* Restrict width for a professional layout */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+.profile-playlist-section h3 {
+    color: #fff;
+    font-size: 26px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Playlist List */
+.profile-playlist-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    display: grid; /* Grid layout for symmetry */
+    grid-template-columns: 1fr; /* Single column, but flexible for wider screens */
+    gap: 20px;
+    max-width: 600px; /* Align to the section width */
+}
+
+/* Playlist Item */
+.profile-playlist-item {
+    background-color: #1a1a1a;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-playlist-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Playlist Name */
+.profile-playlist-name {
+    font-size: 20px;
+    color: #2F9B6A;
+    font-weight: 600;
+    text-decoration: none;
+    flex-grow: 1; /* Expand name to use available space */
+    text-align: left;
+    margin-right: 300px; /* Add space between name and delete button */
+}
+
+/* Delete Button */
+.profile-delete-playlist {
+    background-color: #FF6F61;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.profile-delete-playlist:hover {
+    background-color: #cc584e;
+}
+
+/* Create Playlist Button */
+.profile-create-playlist {
+    margin-top: 30px;
+    padding: 12px 24px;
+    background-color: #2F9B6A;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+}
+
+.profile-create-playlist:hover {
+    background-color: #257e56;
+    transform: scale(1.05);
+}
+
+/* No Playlists Message */
+.profile-no-playlists {
+    color: #b3b3b3;
+    font-size: 18px;
+    margin-top: 20px;
+    font-style: italic;
+}
+
+/* Sorting Form Container */
+.sorting-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px; /* Adds space above the sorting form */
+    gap: 10px; /* Space between the label and the dropdown */
+    margin-bottom: 30px; /* Adds space after the form to separate it from the playlist */
+}
+
+/* Sorting Label */
+.sorting-form label {
+    font-size: 16px;
+    color: white; /* Light gray text */
+    font-weight: 500; /* Medium weight for readability */
+    text-align: center; /* Center the label */
+    margin-bottom: 0; /* Remove space below the label */
+}
+
+/* Sorting Dropdown */
+.sorting-dropdown {
+    background-color: #2F2F2F; /* Dark background for dropdown */
+    color: #fff; /* White text */
+    padding: 8px 15px; /* Adequate padding for ease of use */
+    font-size: 14px; /* Slightly larger font for readability */
+    border: 1px solid #2F9B6A; /* Border using the app's primary color */
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 200px; /* Limit width for consistency */
+}
+
+/* Dropdown Hover and Focus */
+.sorting-dropdown:hover,
+.sorting-dropdown:focus {
+    background-color: #1d1d1d; /* Darker background on hover/focus */
+    transform: scale(1.03); /* Slight enlargement on hover/focus */
+}
+
+/* Apply Button for No JavaScript */
+.sorting-form noscript {
+    display: block;
+}
+
+/* Apply Button Styling */
+.sorting-form noscript button {
+    background-color: #2F9B6A; /* App primary color */
+    color: #fff;
+    font-size: 14px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.sorting-form noscript button:hover {
+    background-color: #257e56; /* Darker shade on hover */
+}
+
+/* Active Sorting Option (if using links instead of dropdown) */
+.sort-options a.active {
+    font-weight: bold;
+    color: #2F9B6A; /* Primary color for active state */
+    border-bottom: 2px solid #2F9B6A; /* Active underline */
+}
+
+/* Hover Effect for Sorting Options Links */
+.sort-options a:hover {
+    color: #2F9B6A;
+    transform: scale(1.05);
+}
+
+
+
+

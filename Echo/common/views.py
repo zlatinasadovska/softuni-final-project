@@ -1,7 +1,7 @@
 from django.db.models import Q
 from django.views import View
 from django.shortcuts import render
-from Echo.music.models import Artist, Playlist
+from Echo.music.models import Artist
 
 
 class HomeView(View):

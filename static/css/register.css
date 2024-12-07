@@ -1,0 +1,110 @@
+/* Center the register page content */
+.register-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px); /* Adjust for header/footer */
+    padding: 20px;
+    background-color: #000; /* Maintain the dark background */
+}
+
+/* Style the register box */
+.register-box {
+    max-width: 450px; /* Slightly larger box for registration */
+    width: 100%;
+    padding: 30px; /* Uniform padding */
+    background-color: #121212; /* Dark background for the form */
+    border-radius: 10px; /* Rounded corners for consistency */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7); /* Consistent shadow style */
+    text-align: center;
+}
+
+/* Heading inside the box */
+.register-box h2 {
+    color: #fff;
+    font-size: 28px; /* Larger heading size */
+    margin-bottom: 20px;
+    border-bottom: 3px solid #2F9B6A; /* Green underline for emphasis */
+    padding-bottom: 10px;
+}
+
+/* Form inputs */
+.register-box form input[type="text"],
+.register-box form input[type="password"],
+.register-box form input[type="email"],
+.register-box form select {
+    width: 100%; /* Full-width fields */
+    padding: 12px; /* Consistent padding */
+    margin-bottom: 15px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    background-color: #121212; /* Dark background for inputs */
+    color: #fff;
+    font-size: 16px;
+}
+
+/* Focus effect on inputs */
+.register-box form input[type="text"]:focus,
+.register-box form input[type="password"]:focus,
+.register-box form input[type="email"]:focus,
+.register-box form select:focus {
+    outline: none;
+    border-color: #2F9B6A; /* Green border on focus */
+    box-shadow: 0 0 10px rgba(47, 155, 106, 0.8);
+}
+
+/* Submit button */
+.register-box form button {
+    width: 140px; /* Consistent button size */
+    padding: 12px; /* Consistent padding */
+    background-color: #2F9B6A; /* Green background */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px; /* Maintain consistent button font size */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 20px; /* Spacing above button */
+    display: block; /* Center button */
+    margin-left: auto; /* Center horizontally */
+    margin-right: auto; /* Center horizontally */
+}
+
+/* Button hover effect */
+.register-box form button:hover {
+    background-color: #257e56; /* Darker green on hover */
+    transform: scale(1.05);
+}
+
+/* Error messages styling */
+.error-messages {
+    color: #FF6F61; /* Bright red for errors */
+    font-size: 14px;
+    margin: 10px 0;
+    text-align: left; /* Align errors to the left */
+}
+
+/* Form group labels */
+.register-box .form-group label {
+    display: block;
+    color: #fff;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Link to login */
+.register-box p {
+    color: #fff;
+    margin-top: 20px;
+}
+
+.register-box p a {
+    color: #2F9B6A; /* Green link */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.register-box p a:hover {
+    color: #1d6f49; /* Darker green on hover */
+}

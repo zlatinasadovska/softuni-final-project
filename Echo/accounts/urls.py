@@ -6,6 +6,6 @@ urlpatterns = [
     path('register/', views.RegisterView.as_view(), name='register'),
     path('logout/', views.logout_view, name='logout'),
     path('profile/', views.ProfileView.as_view(), name='profile'),
-    path('update-profile-picture/', views.update_profile_picture, name='update_profile_picture'),
     path('profile/delete/', views.delete_profile, name='delete_profile'),
+    path('profile/edit/', views.edit_profile, name='edit_profile'),
 ]

@@ -14,7 +14,3 @@ class UserRegistrationForm(UserCreationForm):
         fields = ('email', 'username', 'password1', 'password2')
 
 
-class ProfilePictureForm(forms.ModelForm):
-    class Meta:
-        model = UserProfile
-        fields = ['profile_picture']

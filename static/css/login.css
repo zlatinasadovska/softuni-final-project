@@ -1,0 +1,102 @@
+/* Center the login page content */
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px); /* Adjust for header/footer */
+    padding: 20px;
+    background-color: #000; /* Maintain the dark background */
+}
+
+/* Style the login box */
+.login-box {
+    max-width: 450px; /* Consistent box size with register */
+    width: 100%;
+    padding: 30px; /* Uniform padding */
+    background-color: #121212; /* Dark background for the form */
+    border-radius: 10px; /* Rounded corners for consistency */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7); /* Consistent shadow style */
+    text-align: center;
+}
+
+/* Heading inside the box */
+.login-box h1 {
+    color: #fff;
+    font-size: 28px; /* Match the heading size with register */
+    margin-bottom: 20px;
+    border-bottom: 3px solid #2F9B6A; /* Green underline for emphasis */
+    padding-bottom: 10px;
+}
+
+/* Form inputs */
+.login-box form input[type="text"],
+.login-box form input[type="password"],
+.login-box form input[type="email"],
+.login-box form select {
+    width: 100%; /* Full-width fields */
+    padding: 12px; /* Consistent padding */
+    margin-bottom: 15px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    background-color: #121212; /* Dark background for inputs */
+    color: #fff;
+    font-size: 16px;
+}
+
+/* Focus effect on inputs */
+.login-box form input[type="text"]:focus,
+.login-box form input[type="password"]:focus,
+.login-box form input[type="email"]:focus,
+.login-box form select:focus {
+    outline: none;
+    border-color: #2F9B6A; /* Green border on focus */
+    box-shadow: 0 0 10px rgba(47, 155, 106, 0.8);
+}
+
+/* Submit button */
+.login-box form button {
+    width: 140px; /* Consistent button size */
+    padding: 12px; /* Consistent padding */
+    background-color: #2F9B6A; /* Green background */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px; /* Maintain consistent button font size */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 20px; /* Spacing above button */
+    display: block; /* Center button */
+    margin-left: auto; /* Center horizontally */
+    margin-right: auto; /* Center horizontally */
+}
+
+/* Button hover effect */
+.login-box form button:hover {
+    background-color: #257e56; /* Darker green on hover */
+    transform: scale(1.05);
+}
+
+/* Error messages styling (if needed) */
+.error-messages {
+    color: #FF6F61; /* Bright red for errors */
+    font-size: 14px;
+    margin: 10px 0;
+    text-align: left; /* Align errors to the left */
+}
+
+/* Login prompt styling */
+.login-box p {
+    color: #fff;
+    margin-top: 20px;
+}
+
+.login-box p a {
+    color: #2F9B6A; /* Green link */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.login-box p a:hover {
+    color: #1d6f49; /* Darker green on hover */
+}

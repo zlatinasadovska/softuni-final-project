@@ -1,12 +1,11 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponse, HttpResponseForbidden
+from django.http import HttpResponse, HttpResponseForbidden, Http404
 from django.shortcuts import redirect, get_object_or_404, render
 from django.urls import reverse_lazy
-from django.views import View
-from django.views.generic import DetailView, CreateView, FormView
-from Echo.music.forms import PlaylistForm, AddTrackToPlaylistForm
+from django.views.generic import DetailView, CreateView, UpdateView
+from Echo.music.forms import PlaylistForm
 from Echo.music.models import Artist, Album, Track, Playlist
 from Echo.spotify.spotify_helpers import import_track, import_album, search_spotify, import_artist
 
@@ -47,7 +46,7 @@ class AlbumDetailView(DetailView):
         album = self.get_object()
 
         # Fetch Spotify tracks for the album
-        tracks = album.tracks.all()  # Assuming your Album model has related tracks
+        tracks = album.tracks.all()
 
         # Add tracks to the context
         context['tracks'] = tracks
@@ -62,15 +61,28 @@ class TrackDetailView(DetailView):
     def get_object(self, queryset=None):
         """Retrieve the track based on the spotify_id from the URL."""
         spotify_id = self.kwargs.get('spotify_id')
-        return get_object_or_404(Track, spotify_id=spotify_id)
+        track = Track.objects.filter(spotify_id=spotify_id).first()
+
+        if not track:
+            # If track doesn't exist in the database, fetch it from Spotify
+            track = import_track(spotify_id)
+            if not track:
+                raise Http404("Track not found or unable to fetch from Spotify.")
+
+        return track
 
     def get_context_data(self, **kwargs):
+        """Add additional context for the template."""
         context = super().get_context_data(**kwargs)
         track = self.get_object()
 
-        # Calculate the duration in minutes and add it to the context
-        duration_minutes = track.duration_ms / 60000 if track.duration_ms else 0
-        context['duration_minutes'] = duration_minutes
+        # Calculate the duration in minutes and seconds and add it to the context
+        if track.duration_ms:
+            duration_minutes = track.duration_ms // 60000
+            duration_seconds = (track.duration_ms % 60000) // 1000
+            context['duration'] = f"{duration_minutes}:{duration_seconds:02d}"
+        else:
+            context['duration'] = "Unknown duration"
 
         # Add the preview_url for the track to the context (if available)
         context['preview_url'] = track.preview_url
@@ -82,6 +94,25 @@ class PlaylistDetailView(DetailView):
     model = Playlist
     template_name = 'music/playlist_details.html'
     context_object_name = 'playlist'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        playlist = self.get_object()
+
+        # Get the sorting order from the GET parameter
+        sort_order = self.request.GET.get('sort', 'default')
+
+        # Sort the tracks based on the sorting order
+        tracks = playlist.tracks.all()
+        if sort_order == 'alphabetical':
+            tracks = tracks.order_by('title')
+        elif sort_order == 'reverse_alphabetical':
+            tracks = tracks.order_by('-title')
+
+        # Add data to the context
+        context['tracks'] = tracks
+        context['sort_order'] = sort_order
+        return context
 
 
 class CreatePlaylistView(LoginRequiredMixin, CreateView):
@@ -109,28 +140,6 @@ def delete_playlist(request, pk):
     playlist.delete()
     messages.success(request, "Playlist deleted successfully!")
     return redirect('profile')
-
-
-class AddTrackToPlaylistView(FormView):
-    form_class = AddTrackToPlaylistForm
-    template_name = 'music/add_track_to_playlist.html'
-
-    def form_valid(self, form):
-        playlist = get_object_or_404(Playlist, pk=self.kwargs['playlist_id'])
-        track = form.cleaned_data['track']
-
-        if not playlist.tracks.filter(id=track.id).exists():
-            playlist.tracks.add(track)
-            messages.success(self.request, f'Track "{track.title}" has been added to your playlist.')
-        else:
-            messages.warning(self.request, f'Track "{track.title}" is already in your playlist.')
-
-        return redirect('playlist_detail', pk=playlist.pk)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['playlist'] = get_object_or_404(Playlist, pk=self.kwargs['playlist_id'])
-        return context
 
 
 def remove_track_from_playlist(request, playlist_id, track_id):
@@ -197,3 +206,15 @@ def add_to_playlist(request, track_id):
 
     return redirect('playlist_detail', pk=playlist.id)
 
+
+class PlaylistNameChangeView(UpdateView):
+    model = Playlist
+    fields = ['name']
+    template_name = 'music/edit_playlist.html'
+    context_object_name = 'playlist'
+
+    def get_success_url(self):
+        return reverse_lazy('playlist_detail', kwargs={'pk': self.object.pk})
+
+    def form_valid(self, form):
+        return super().form_valid(form)

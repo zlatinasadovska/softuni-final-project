@@ -8,12 +8,30 @@
     <div class="playlist-card">
         <h2 class="playlist-title">{{ playlist.name }}</h2>
 
-        <!-- Add Tracks Button -->
-        <a href="{% url 'search' %}" class="primary-button add-track-button">Add Tracks</a>
+        <!-- Buttons for Change Playlist Name and Add Tracks -->
+        <div class="playlist-actions">
+            <a href="{% url 'edit_playlist' playlist.pk %}" class="primary-button change-name-button">Change Name</a>
+            <a href="{% url 'search' %}" class="primary-button add-track-button">Add Tracks</a>
+        </div>
+
+        <!-- Sorting Dropdown -->
+        <form method="get" class="sorting-form">
+            <label for="sort">Sort tracks:</label>
+            <select name="sort" id="sort" class="sorting-dropdown" onchange="this.form.submit()">
+                <option value="default" {% if sort_order == 'default' %}selected{% endif %}>Default</option>
+                <option value="alphabetical" {% if sort_order == 'alphabetical' %}selected{% endif %}>Alphabetical</option>
+                <option value="reverse_alphabetical" {% if sort_order == 'reverse_alphabetical' %}selected{% endif %}>
+                    Reverse Alphabetical
+                </option>
+            </select>
+            <noscript>
+                <button type="submit" class="primary-button">Apply</button>
+            </noscript>
+        </form>
 
         <!-- Playlist Tracks -->
         <ul class="playlist-list">
-            {% for track in playlist.tracks.all %}
+            {% for track in tracks %}
                 <li class="playlist-item">
                     <!-- Track Name Link to Track Details -->
                     <a href="{% url 'track_detail' spotify_id=track.spotify_id %}" class="track-name">{{ track.title }}</a>

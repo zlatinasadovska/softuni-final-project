@@ -22,6 +22,8 @@
                         <!-- Show Profile link if the user is authenticated -->
                         {% if user.is_authenticated %}
                             <li><a href="{% url 'profile' %}">Profile</a></li>
+                            <!-- Add Logout link here -->
+                            <li><a href="{% url 'logout' %}">Logout</a></li>
                         {% else %}
                             <!-- Show Login and Register if the user is NOT authenticated -->
                             <li><a href="{% url 'login' %}">Login</a></li>
@@ -44,7 +46,7 @@
                         <input type="checkbox" id="settings-toggle" class="settings-toggle">
                         <label for="settings-toggle" class="settings-btn">Settings</label>
                         <ul class="dropdown-menu">
-                            <li><a href="{% url 'logout' %}" class="dropdown-item">Logout</a></li>
+                            <!-- Remove Logout and keep Delete Profile -->
                             <li><a href="{% url 'delete_profile' %}" class="dropdown-item">Delete Profile</a></li>
                         </ul>
                     </div>
@@ -52,12 +54,12 @@
             </div>
         </nav>
     </header>
-    
+
     <main class="home-container">
         <!-- Content Section -->
         {% if user.is_authenticated %}
             <div class="hero-section">
-                <h1 class="hero-title">Welcome to <span class="highlight">your profile!</span></h1>
+                <h1 class="hero-title">Welcome back, <span class="highlight">{{ user.username }}!</span></h1>
             </div>
 
             <div class="recommendations-section">

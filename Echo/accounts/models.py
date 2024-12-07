@@ -14,9 +14,6 @@ class UserProfile(AbstractUser):
         blank=True,
         null=True,
     )
-    is_artist = models.BooleanField(
-        default=False,
-    )
     is_active = models.BooleanField(
         default=True,
     )

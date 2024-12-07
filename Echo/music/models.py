@@ -8,7 +8,6 @@ class Artist(models.Model):
         unique=True,
     )
     profile_picture = models.ImageField(
-        upload_to='profile_pics/',
         blank=True,
         null=True,
     )
@@ -62,12 +61,10 @@ class Track(models.Model):
         blank=True,
     )
     track_image = models.ImageField(
-        upload_to='track_images/',
         blank=True,
         null=True,
     )
     track_file = models.FileField(
-        upload_to='track_files/',
         blank=True,
         null=True,
     )

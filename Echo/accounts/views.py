@@ -1,9 +1,10 @@
-from django.contrib.auth import login, authenticate, logout
+from django.contrib import messages
+from django.contrib.auth import login, authenticate, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, render
 from django.views.generic import CreateView, DetailView, FormView
-from Echo.accounts.forms import UserLoginForm, UserRegistrationForm, ProfilePictureForm
+from Echo.accounts.forms import UserLoginForm, UserRegistrationForm
 from Echo.accounts.models import UserProfile
 from django.urls import reverse_lazy
 
@@ -48,16 +49,16 @@ def logout_view(request):
 def delete_profile(request):
     if request.method == "POST":
         user = request.user
-        user.delete()  # Deletes the user's profile
-        logout(request)  # Log the user out after deletion
-        return redirect('home')  # Redirect to home or another page
+        user.delete()
+        logout(request)
+        return redirect('home')
 
     return render(request, 'accounts/delete_profile.html')
 
 
 class ProfileView(LoginRequiredMixin, DetailView):
     model = UserProfile
-    template_name = 'accounts/profile.html'
+    template_name = 'accounts/profile_details.html'
     context_object_name = 'user'
 
     def get_object(self, queryset=None):
@@ -70,16 +71,52 @@ class ProfileView(LoginRequiredMixin, DetailView):
 
 
 @login_required
-def update_profile_picture(request):
-    user = request.user
+def edit_profile(request):
+    user_profile = request.user
 
     if request.method == 'POST':
-        form = ProfilePictureForm(request.POST, request.FILES, instance=user)
-        if form.is_valid():
-            form.save()
-            return redirect('profile')
+        # Handle profile picture updates
+        if 'remove_picture' in request.POST:
+            user_profile.profile_picture.delete()
+            user_profile.profile_picture = None
+        elif 'profile_picture' in request.FILES:
+            user_profile.profile_picture.delete()
+            user_profile.profile_picture = request.FILES['profile_picture']
 
-    else:
-        form = ProfilePictureForm(instance=user)
+        # Handle password updates
+        current_password = request.POST.get('current_password', '').strip()
+        new_password = request.POST.get('new_password', '').strip()
+        confirm_new_password = request.POST.get('confirm_new_password', '').strip()
 
-    return render(request, 'accounts/update_profile_picture.html', {'form': form})
+        # Password change validation
+        if current_password or new_password or confirm_new_password:
+            if not (current_password and new_password and confirm_new_password):
+                messages.error(request, "All password fields must be filled to change your password.")
+                return render(request, 'accounts/edit_profile.html', {'user': user_profile})
+            elif new_password != confirm_new_password:
+                messages.error(request, "New passwords do not match.")
+                return render(request, 'accounts/edit_profile.html', {'user': user_profile})
+            elif not user_profile.check_password(current_password):
+                messages.error(request, "Current password is incorrect.")
+                return render(request, 'accounts/edit_profile.html', {'user': user_profile})
+            else:
+                user_profile.set_password(new_password)
+                user_profile.save()
+
+                # Keep the user logged in after password change
+                update_session_auth_hash(request, user_profile)
+                messages.success(request, "Your password has been updated.")
+                return redirect('profile')
+
+        # Handle username update
+        new_username = request.POST.get('username', '').strip()
+        if new_username and new_username != user_profile.username:
+            user_profile.username = new_username
+
+        # Save any other changes
+        user_profile.save()
+        messages.success(request, "Your profile has been updated.")
+        return redirect('profile')
+
+    return render(request, 'accounts/edit_profile.html', {'user': user_profile})
+
