@@ -22,7 +22,7 @@
         <div class="audio-player">
             {% if preview_url %}
                 <audio controls>
-                    <source src="{{ preview_url }}" type="audio/mpeg">
+                    <source src="{{ track.preview_url }}" type="audio/mp3">
                     Your browser does not support the audio element.
                 </audio>
             {% else %}
@@ -30,5 +30,4 @@
             {% endif %}
         </div>
     </div>
-
 {% endblock %}

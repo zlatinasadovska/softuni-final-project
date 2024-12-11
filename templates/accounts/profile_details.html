@@ -4,7 +4,6 @@
 {% block title %}Profile - Echo Music{% endblock %}
 
 {% block content %}
-
     <header>
         <nav>
             <div class="nav-container">
@@ -47,7 +46,6 @@
                         <input type="checkbox" id="settings-toggle" class="settings-toggle">
                         <label for="settings-toggle" class="settings-btn">Settings</label>
                         <ul class="dropdown-menu">
-                            <!-- Remove Logout and keep Delete Profile -->
                             <li><a href="{% url 'delete_profile' %}" class="dropdown-item">Delete Profile</a></li>
                         </ul>
                     </div>
@@ -55,7 +53,6 @@
             </div>
         </nav>
     </header>
-
 
     <div class="profile-page-container">
         <!-- Profile Card Section -->
@@ -72,7 +69,7 @@
         <!-- Edit Profile Button -->
         <a href="{% url 'edit_profile' %}" class="edit-profile-button">Edit Profile</a>
 
-        <!-- Playlist Section (Profile Page) -->
+        <!-- Playlist Section -->
         <div class="profile-playlist-section">
             <h3>Your Playlists</h3>
             {% if playlists %}
@@ -93,6 +90,10 @@
             <a href="{% url 'create_playlist' %}" class="profile-create-playlist">Create a New Playlist</a>
         </div>
 
-    </div>
+        <!-- Testimonials Section -->
+        <a href="{% url 'my_testimonials' %}" class="btn your-feedbacks-btn">
+            Your Feedbacks
+        </a>
 
+    </div>
 {% endblock %}

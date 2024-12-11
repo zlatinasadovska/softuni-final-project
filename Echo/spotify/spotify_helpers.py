@@ -2,10 +2,10 @@ from Echo.music.models import Artist, Album, Track
 from Echo.spotify.spotify_client import sp
 
 
-def search_spotify(query):
-    """Search for artists, albums, or tracks based on a query."""
+def search_spotify(query, limit=50, offset=0):
+    """Search for artists, albums, or tracks with pagination."""
     try:
-        results = sp.search(q=query, type='track,album,artist', limit=10)
+        results = sp.search(q=query, type='track,album,artist', limit=limit, offset=offset)
         return {
             'tracks': results.get('tracks', {}).get('items', []),
             'albums': results.get('albums', {}).get('items', []),
@@ -14,6 +14,32 @@ def search_spotify(query):
     except Exception as e:
         print(f"Error querying Spotify API: {e}")
         return {'tracks': [], 'albums': [], 'artists': []}
+
+
+def fetch_all_results(query, limit=50):
+    """Fetch all results for a given query with pagination."""
+    all_tracks = []
+    all_albums = []
+    all_artists = []
+    offset = 0
+
+    while True:
+        results = search_spotify(query, limit=limit, offset=offset)
+
+        all_tracks.extend(results['tracks'])
+        all_albums.extend(results['albums'])
+        all_artists.extend(results['artists'])
+
+        if len(results['tracks']) < limit and len(results['albums']) < limit and len(results['artists']) < limit:
+            break
+
+        offset += limit
+
+    return {
+        'tracks': all_tracks,
+        'albums': all_albums,
+        'artists': all_artists,
+    }
 
 
 def normalize_release_date(release_date):
@@ -27,7 +53,7 @@ def import_artist(artist_id):
     """Fetch and save artist details from Spotify."""
     try:
         artist_data = sp.artist(artist_id)
-        profile_picture = artist_data.get('images', [{}])[0].get('url')  # Extract artist's profile picture
+        profile_picture = artist_data.get('images', [{}])[0].get('url')
 
         artist, _ = Artist.objects.update_or_create(
             spotify_id=artist_id,
@@ -49,6 +75,7 @@ def import_album(album_id):
     try:
         album_data = sp.album(album_id)
         artist = import_artist(album_data['artists'][0]['id'])
+
         release_date = normalize_release_date(album_data.get('release_date'))
 
         album, _ = Album.objects.update_or_create(
@@ -69,42 +96,35 @@ def import_album(album_id):
 def import_track(track_id):
     """Fetch and save track details from Spotify."""
     try:
-        # Fetch track data from Spotify API
         track_data = sp.track(track_id)
 
-        # Extract the preview URL (may be None)
         preview_url = track_data.get('preview_url')
         spotify_url = track_data.get('external_urls', {}).get('spotify')
 
-        # Import related artist and album
+        print(f"Track {track_id} - Preview URL: {preview_url}")
+
         artist = import_artist(track_data['artists'][0]['id'])
         album = import_album(track_data['album']['id'])
 
-        # Extract track image safely
-        track_image = (
-            track_data['album']['images'][0]['url']
-            if track_data['album'].get('images')
-            else None
-        )
+        track_image = track_data['album']['images'][0].get('url') if track_data['album'].get('images') else None
 
-        # Check if a track with the same title and artist exists
         track, created = Track.objects.update_or_create(
             title=track_data['name'],
-            artist=artist,  # Ensure we're comparing tracks by title and artist
+            artist=artist,
             defaults={
-                'spotify_id': track_id,  # Store the Spotify-specific ID
+                'spotify_id': track_id,
                 'album': album,
                 'duration_ms': track_data['duration_ms'],
                 'track_image': track_image,
                 'spotify_url': spotify_url,
-                'preview_url': preview_url,  # Save preview URL (may be None)
+                'preview_url': preview_url,
             }
         )
 
+        if created:
+            print(f"Successfully imported track: {track_data['name']}")
         return track
+
     except Exception as e:
         print(f"Error importing track {track_id}: {e}")
         return None
-
-
-

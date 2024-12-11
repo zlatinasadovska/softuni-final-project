@@ -10,7 +10,7 @@
     background-color: #000;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    margin: 40px auto 0; /* Centered container with top margin */
+    margin: 40px auto 0;
     text-align: center;
 }
 
@@ -30,21 +30,21 @@
 
 /* Track Image */
 .track-image img {
-    width: 280px; /* Smaller width for the track image */
-    height: 280px; /* Maintain a square aspect ratio */
-    border-radius: 10px; /* Slightly rounded corners */
-    object-fit: cover; /* Ensure image covers the area */
-    margin-bottom: 20px; /* Space below the image */
+    width: 280px;
+    height: 280px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-bottom: 20px;
 }
 
 /* Audio Player Styling */
 .audio-player {
     width: 100%;
-    max-width: 600px; /* Limit the audio player width */
+    max-width: 600px;
 }
 
 audio {
-    width: 100%; /* Make sure the audio player is responsive */
+    width: 100%;
     border-radius: 5px;
     border: 1px solid #ccc;
     background-color: #f9f9f9;

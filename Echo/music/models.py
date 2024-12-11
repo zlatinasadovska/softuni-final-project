@@ -1,20 +1,27 @@
+from django.conf import settings
 from django.db import models
 from Echo.accounts.models import UserProfile
 
 
 class Artist(models.Model):
-    name = models.CharField(
-        max_length=100,
-        unique=True,
-    )
-    profile_picture = models.ImageField(
-        blank=True,
-        null=True,
-    )
     spotify_id = models.CharField(
-        max_length=50,
+        max_length=255,
         unique=True,
-        default="default_spotify_id",
+    )
+    name = models.CharField(
+        max_length=255,
+    )
+    profile_picture = models.URLField(
+        null=True,
+        blank=True,
+    )
+    genres = models.TextField(
+        null=True,
+        blank=True,
+    )
+    spotify_url = models.URLField(
+        null=True,
+        blank=True,
     )
 
     def __str__(self):
@@ -22,22 +29,25 @@ class Artist(models.Model):
 
 
 class Album(models.Model):
+    spotify_id = models.CharField(
+        max_length=255,
+        unique=True,
+    )
     title = models.CharField(
-        max_length=100,
+        max_length=255,
     )
     artist = models.ForeignKey(
-        to=Artist,
-        related_name='albums',
+        Artist,
+        related_name="albums",
         on_delete=models.CASCADE,
     )
     release_date = models.DateField(
         null=True,
         blank=True,
     )
-    spotify_id = models.CharField(
-        max_length=50,
-        unique=True,
-        default="default_spotify_id",
+    cover_image = models.URLField(
+        null=True,
+        blank=True,
     )
 
     def __str__(self):
@@ -69,7 +79,6 @@ class Track(models.Model):
         null=True,
     )
     preview_url = models.URLField(
-        max_length=200,
         null=True,
         blank=True,
     )
@@ -77,6 +86,10 @@ class Track(models.Model):
         max_length=50,
         unique=True,
         default="default_spotify_id",
+    )
+    spotify_url = models.URLField(
+        null=True,
+        blank=True,
     )
     duration_ms = models.IntegerField(
         null=True,
@@ -107,3 +120,15 @@ class Playlist(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Testimonial(models.Model):
+    text = models.TextField()
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user}: {self.text[:20]}"

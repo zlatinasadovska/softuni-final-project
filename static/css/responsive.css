@@ -13,17 +13,17 @@
     }
 
     .register-box {
-        padding: 15px 20px; /* Less padding for small screens */
+        padding: 15px 20px;
     }
 
     .register-box h2 {
-        font-size: 20px; /* Smaller heading size */
+        font-size: 20px;
     }
 
     .register-box form input[type="text"],
     .register-box form input[type="password"],
     .register-box form input[type="email"] {
-        padding: 10px; /* Slightly smaller padding for inputs on small screens */
+        padding: 10px;
     }
 
     .track-details-container {
@@ -110,6 +110,11 @@
     }
 
     .login-prompt p {
-        font-size: 1rem; /* Adjust font size on smaller screens */
+        font-size: 1rem;
+    }
+
+    .give-feedback-btn {
+        font-size: 0.9rem;
+        padding: 8px 15px;
     }
 }

@@ -13,27 +13,27 @@
 
 .hero-title {
     display: inline-block;
-    font-size: 3rem; /* Adjust font size as needed */
+    font-size: 3rem;
     color: #fff;
-    animation: waveAnimation 3s ease-in-out infinite; /* Apply wave animation */
+    animation: waveAnimation 3s ease-in-out infinite;
 }
 
 /* Animation for smooth wave-like motion */
 @keyframes waveAnimation {
     0% {
-        transform: translateY(0); /* Start at the normal position */
+        transform: translateY(0);
     }
     50% {
-        transform: translateY(-12px); /* Move up at halfway */
+        transform: translateY(-12px);
     }
     100% {
-        transform: translateY(0); /* Return to normal */
+        transform: translateY(0);
     }
 }
 
 
 .hero-title .highlight {
-    color: #2F9B6A; /* You can adjust the highlight color */
+    color: #2F9B6A;
 }
 
 .hero-subtitle {
@@ -44,9 +44,9 @@
 /* Carousel Section */
 .carousel-container {
     position: relative;
-    width: 100%; /* Full width to cover the entire page */
-    height: 600px; /* Adjust height as needed */
-    overflow: hidden; /* Ensures only one image is visible at a time */
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
     margin: 0;
     padding: 0;
 }
@@ -63,10 +63,10 @@
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Maintain aspect ratio while filling the container */
-    opacity: 0; /* Initially hidden */
-    filter: blur(3px); /* Apply slight blur to the images */
-    transition: opacity 1s ease-in-out; /* Smooth fade transition */
+    object-fit: cover;
+    opacity: 0;
+    filter: blur(3px);
+    transition: opacity 1s ease-in-out;
 }
 
 /* Carousel Overlay */
@@ -79,8 +79,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1; /* Ensure the text is on top */
-    background: rgba(0, 0, 0, 0.3); /* Optional: Semi-transparent overlay for better text visibility */
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.3);
 }
 
 .carousel-text {
@@ -88,8 +88,8 @@
     font-size: 3rem;
     font-weight: bold;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
-                 0 0 20px rgba(255, 255, 255, 0.6),
-                 0 0 30px rgba(255, 255, 255, 0.4); /* Glowing effect */
+    0 0 20px rgba(255, 255, 255, 0.6),
+    0 0 30px rgba(255, 255, 255, 0.4);
     text-align: center;
     animation: glow 3s infinite, wave 5s infinite ease-in-out;
 }
@@ -98,28 +98,28 @@
 @keyframes glow {
     0% {
         text-shadow: 0 0 5px rgba(255, 255, 255, 0.6),
-                     0 0 10px rgba(255, 255, 255, 0.4),
-                     0 0 15px rgba(255, 255, 255, 0.2);
+        0 0 10px rgba(255, 255, 255, 0.4),
+        0 0 15px rgba(255, 255, 255, 0.2);
     }
     50% {
         text-shadow: 0 0 15px rgba(255, 255, 255, 0.9),
-                     0 0 30px rgba(255, 255, 255, 0.7),
-                     0 0 45px rgba(255, 255, 255, 0.5);
+        0 0 30px rgba(255, 255, 255, 0.7),
+        0 0 45px rgba(255, 255, 255, 0.5);
     }
     100% {
         text-shadow: 0 0 5px rgba(255, 255, 255, 0.6),
-                     0 0 10px rgba(255, 255, 255, 0.4),
-                     0 0 15px rgba(255, 255, 255, 0.2);
+        0 0 10px rgba(255, 255, 255, 0.4),
+        0 0 15px rgba(255, 255, 255, 0.2);
     }
 }
 
 /* Wave Motion Animation */
 @keyframes wave {
     0%, 100% {
-        transform: translateY(0); /* Original position */
+        transform: translateY(0);
     }
     50% {
-        transform: translateY(-10px); /* Slight float up */
+        transform: translateY(-10px);
     }
 }
 
@@ -145,135 +145,370 @@
 
 /* Stagger animations for each image */
 .carousel-slide:nth-child(1) {
-    animation: fade 21s infinite; /* Total duration is 21 seconds for 7 images */
+    animation: fade 21s infinite;
 }
 
 .carousel-slide:nth-child(2) {
-    animation: fade 21s infinite 3s; /* Starts 3 seconds after the first image */
+    animation: fade 21s infinite 3s;
 }
 
 .carousel-slide:nth-child(3) {
-    animation: fade 21s infinite 6s; /* Starts 6 seconds after the first image */
+    animation: fade 21s infinite 6s;
 }
 
 .carousel-slide:nth-child(4) {
-    animation: fade 21s infinite 9s; /* Starts 9 seconds after the first image */
+    animation: fade 21s infinite 9s;
 }
 
 .carousel-slide:nth-child(5) {
-    animation: fade 21s infinite 12s; /* Starts 12 seconds after the first image */
+    animation: fade 21s infinite 12s;
 }
 
 .carousel-slide:nth-child(6) {
-    animation: fade 21s infinite 15s; /* Starts 15 seconds after the first image */
+    animation: fade 21s infinite 15s;
 }
 
 .carousel-slide:nth-child(7) {
-    animation: fade 21s infinite 18s; /* Starts 18 seconds after the first image */
+    animation: fade 21s infinite 18s;
 }
 
 
 /* Testimonial Section */
 .testimonial {
-    padding: 60px 0 60px;  /* Add padding for the section */
-    background: #1b2e21;    /* Background color */
-    margin-top: 40px;       /* Space between carousel and testimonials */
+    padding: 60px 0 60px;
+    background: #1b2e21;
+    margin-top: 40px;
 }
 
 /* Title Styling */
 .testimonial .section-title h2 {
-    color: #000000;
+    color: #f9f9f9;
     margin-bottom: 40px;
     font-size: 2rem;
     transition: color 0.3s ease, transform 0.6s ease;
 }
 
 .testimonial .section-title h2:hover {
-    color: #f9f9f9;  /* Color on hover */
-    transform: translateY(-15px);  /* Slowly moves the title up */
+    color: #f9f9f9;
+    transform: translateY(-15px);
 }
 
 /* Flexbox Layout for Testimonials */
 .testimonial__slider {
-    display: flex;            /* Use flexbox to arrange items horizontally */
-    justify-content: center;  /* Center items horizontally */
-    align-items: center;      /* Center items vertically */
-    gap: 30px;                /* Space between items */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
 }
 
 /* Individual Testimonial Item */
 .testimonial__item {
-    flex: 1;                  /* Allow each testimonial to expand equally */
-    max-width: 300px;         /* Set max width */
-    background-color: rgba(0, 0, 0, 0.7);  /* Slight transparency */
-    border-radius: 10px;      /* Rounded corners */
-    padding: 20px;            /* Padding inside the box */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Add shadow */
-    margin: 0;                /* Remove margin */
-    transition: transform 0.3s ease-in-out;  /* Smooth hover effect */
+    flex: 1;
+    max-width: 300px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    margin: 0;
+    transition: transform 0.3s ease-in-out;
 }
 
 /* Hover Effect for Testimonial Item */
 .testimonial__item:hover {
-    transform: translateY(-10px); /* Lift item on hover */
+    transform: translateY(-10px);
 }
 
 /* Testimonial Text Styling */
 .testimonial__text {
-    padding: 30px 20px 25px 20px;   /* Padding around the text */
-    border: 1px solid #2F9B6A;      /* Border color */
-    margin-bottom: 25px;             /* Space below text */
+    padding: 30px 20px 25px 20px;
+    border: 1px solid #2F9B6A;
+    margin-bottom: 25px;
 }
 
 .testimonial__text p {
-    color: #f9f9f9;            /* White text */
-    font-size: 18px;            /* Font size */
-    font-weight: 300;           /* Font weight */
-    font-style: italic;         /* Italic text */
-    line-height: 30px;          /* Line height */
-    margin-bottom: 0;           /* Remove bottom margin */
+    color: #f9f9f9;
+    font-size: 18px;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 30px;
+    margin-bottom: 0;
 }
 
 /* Author Info Styling */
 .testimonial__author {
-    display: flex;              /* Align author info horizontally */
-    align-items: center;        /* Center vertically */
-    margin-top: 20px;           /* Space between text and author */
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
 }
 
 .testimonial__author__pic {
-    flex-shrink: 0;             /* Prevent image from shrinking */
-    margin-right: 20px;         /* Space between image and name */
+    flex-shrink: 0;
+    margin-right: 20px;
 }
 
 .testimonial__author__pic img {
-    height: 60px;               /* Image size */
-    width: 60px;                /* Image size */
-    border-radius: 50%;         /* Round image */
-    object-fit: cover;          /* Maintain aspect ratio */
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .testimonial__author__text h5 {
-    color: #f9f9f9;             /* Author name color */
-    font-weight: 700;           /* Bold name */
-    margin-bottom: 8px;         /* Space below name */
+    color: #f9f9f9;
+    font-weight: 700;
+    margin-bottom: 8px;
 }
 
 .testimonial__author__text span {
-    color: #f9f9f9;             /* Author title color */
-    font-size: 14px;            /* Font size */
-    font-weight: 300;           /* Font weight */
+    color: #f9f9f9;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.feedback-section {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.give-feedback-btn {
+    background-color: #6c63ff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.give-feedback-btn:hover {
+    background-color: #5548d3;
+    text-decoration: none;
+}
+
+/* Give Feedback Page Styling */
+.give-feedback-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #000000;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+    color: #fff;
+}
+
+.give-feedback-container h2 {
+    font-size: 28px;
+    color: #fff;
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 3px solid #6c63ff;
+    padding-bottom: 10px;
+    width: 100%;
+}
+
+/* Styling Submit button */
+.submit-btn {
+    background-color: #6c63ff;
+    color: #fff;
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.submit-btn:hover {
+    background-color: #5548d3;
+    transform: scale(1.05);
+}
+
+/* Styling for input fields and text areas on the Give Feedback page */
+.give-feedback-form input,
+.give-feedback-form textarea {
+    background-color: #121212;
+    color: #fff;
+    border: 1px solid #333;
+    border-radius: 5px;
+    padding: 12px;
+    font-size: 16px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+/* Focus effect for input fields and text areas on the Give Feedback page */
+.give-feedback-form input:focus,
+.give-feedback-form textarea:focus {
+    outline: none;
+    border-color: #6c63ff;
+    box-shadow: 0 0 10px rgba(108, 99, 255, 0.8);
+}
+
+/* General Styling for the Feedbacks Page */
+.feedbacks-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #000000;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+    color: #b3b3b3;
+}
+
+.feedbacks-container h2 {
+    font-size: 30px;
+    color: #fff;
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 3px solid #6c63ff;
+    padding-bottom: 10px;
+    width: 100%;
+}
+
+/* List Styling for Testimonials */
+.testimonial-list {
+    width: 100%;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.testimonial-item {
+    background-color: #121212;
+    color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+    transition: all 0.3s ease;
+}
+
+.testimonial-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.8);
+}
+
+.testimonial-item span {
+    font-size: 16px;
+}
+
+/* Button Styling */
+.delete-btn {
+    background-color: #cc3333;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-size: 14px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+    background-color: #b22a2a;
+    transform: scale(1.05);
+}
+
+/* No Testimonials Styling */
+.feedbacks-container p {
+    font-size: 16px;
+    color: #fff;
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Specific styling for the delete confirmation page */
+.delete-confirmation-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #000000;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+    color: #fff; /* Light text */
+}
+
+.delete-confirmation-container h2 {
+    font-size: 28px;
+    color: #fff;
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 3px solid #6c63ff;
+    padding-bottom: 10px;
+    width: 100%;
+}
+
+.delete-confirmation-container p {
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Delete button styling */
+.delete-confirmation-container .delete-btn {
+    background-color: #cc3333;
+    color: #fff;
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.delete-confirmation-container .delete-btn:hover {
+    background-color: #b22a2a;
+    transform: scale(1.05);
+}
+
+/* Cancel button styling */
+.delete-confirmation-container .cancel-btn {
+    display: inline-block;
+    background-color: #6c63ff;
+    color: #fff;
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.delete-confirmation-container .cancel-btn:hover {
+    background-color: #5548d3;
+    transform: scale(1.05);
 }
 
 /* Quotes Section */
 .quote-section {
     position: relative;
     width: 100%;
-    height: 400px; /* Adjust the height as needed */
-    overflow: hidden; /* Ensure the content stays within bounds */
-    padding: 50px 0; /* Add space above and below the section */
-    margin-top: 60px; /* Add space above the section */
-    margin-bottom: 60px; /* Add space below the section */
+    height: 400px;
+    overflow: hidden;
+    padding: 50px 0;
+    margin-top: 60px;
+    margin-bottom: 60px;
 }
 
 /* Background Image */
@@ -282,11 +517,11 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%; /* Make the image cover the entire section */
-    object-fit: cover; /* Ensure the image maintains its aspect ratio while covering the area */
-    filter: blur(10px); /* Apply blur to the background */
-    opacity: 0.3; /* Adjust opacity for better visibility of text */
-    z-index: -1; /* Make sure the image is in the background */
+    height: 100%;
+    object-fit: cover;
+    filter: blur(10px);
+    opacity: 0.3;
+    z-index: -1;
 }
 
 /* Quote Container */
@@ -295,12 +530,12 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%; /* Take full height of the container */
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    z-index: 1; /* Ensure the quotes are on top of the background */
+    z-index: 1;
     text-align: center;
 }
 
@@ -309,47 +544,46 @@
     font-size: 1.9rem;
     font-weight: bolder;
     color: #f9f9f9;
-    opacity: 0; /* Initially hidden */
+    opacity: 0;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     white-space: nowrap;
-    transition: opacity 1s ease-in-out; /* Smooth transition for opacity */
+    transition: opacity 1s ease-in-out;
 }
 
 /* Stagger the animation for each quote */
 .quote-text:nth-child(1) {
     animation: fade-quotes 18s infinite;
-    animation-delay: 0s; /* No delay for the first quote */
+    animation-delay: 0s;
 }
 
 .quote-text:nth-child(2) {
     animation: fade-quotes 18s infinite;
-    animation-delay: 6s; /* Delay for the second quote to show after 6 seconds */
+    animation-delay: 6s;
 }
 
 .quote-text:nth-child(3) {
     animation: fade-quotes 18s infinite;
-    animation-delay: 12s; /* Delay for the third quote to show after 12 seconds */
+    animation-delay: 12s;
 }
 
 /* Smooth animation for fade effect */
 @keyframes fade-quotes {
     0%, 33.33% {
         opacity: 0;
-        z-index: -1; /* Make the quote not visible */
+        z-index: -1;
     }
     5%, 28% {
         opacity: 1;
-        z-index: 1; /* Make the quote visible */
+        z-index: 1;
     }
     35%, 100% {
         opacity: 0;
-        z-index: -1; /* Fade out the quote */
+        z-index: -1;
     }
 }
-
 
 .stats-section {
     text-align: center;
@@ -379,7 +613,7 @@
 .recommendations-section {
     margin: 40px 0;
     padding: 20px;
-    background-color: #000; /* Black background */
+    background-color: #000;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
@@ -390,16 +624,16 @@
     margin-bottom: 10px;
     text-align: center;
     display: inline-block;
-    transition: transform 0.3s ease; /* Smooth animation */
+    transition: transform 0.3s ease;
 }
 
 .section-title:hover {
-    transform: translateX(10px); /* Move text 10px to the right */
+    transform: translateX(10px);
 }
 
 .section-description {
     font-size: 1.2rem;
-    color: #2F9B6A; /* Light gray for the description */
+    color: #2F9B6A;
     text-align: center;
     margin-bottom: 20px;
 }
@@ -410,14 +644,14 @@
 
 .section-subtitle {
     font-size: 1.5rem;
-    color: #fff; /* Ensure it matches the theme */
-    margin-bottom: 20px; /* Add spacing below the subtitle */
+    color: #fff;
+    margin-bottom: 20px;
     text-align: center;
-     transition: transform 0.3s ease; /* Smooth animation */
+    transition: transform 0.3s ease;
 }
 
 .section-subtitle:hover {
-    transform: translateX(-10px); /* Move text 10px to the left */
+    transform: translateX(-10px);
 }
 
 .recommendations-items {
@@ -432,7 +666,7 @@
     text-decoration: none;
     color: inherit;
     width: 200px;
-    background-color: #333; /* Gray background for artist boxes */
+    background-color: #333;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
@@ -457,19 +691,19 @@
 
 .recommendation-info h3 {
     font-size: 1.2rem;
-    color: #fff; /* White for the artist name */
+    color: #fff;
     margin-bottom: 5px;
 }
 
 .recommendation-info p {
     font-size: 0.9rem;
-    color: #2F9B6A; /* Light gray for the description */
+    color: #2F9B6A;
 }
 
 .recommendation-image-container {
     width: 100%;
     height: 150px;
-    background-color: black; /* Black background when no artist image */
+    background-color: black;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -482,31 +716,31 @@
 }
 
 .default-logo {
-    background-color: transparent; /* Reset background in case of default logo */
+    background-color: transparent;
     padding: 10px;
-    object-fit: contain; /* Maintain aspect ratio of the logo */
+    object-fit: contain;
 }
 
 /* Styling for the login prompt */
 .login-prompt {
-    background-color: #121212; /* Dark background to match the page */
-    color: #fff; /* White text for contrast */
+    background-color: #121212;
+    color: #fff;
     text-align: center;
     padding: 20px;
-    border-top: 2px solid #2F9B6A; /* Green underline for emphasis */
-    margin-top: 50px; /* Space between content and the prompt */
+    border-top: 2px solid #2F9B6A;
+    margin-top: 50px;
 }
 
 /* Style the login prompt text */
 .login-prompt p {
-    font-size: 1.2rem; /* Slightly larger font size */
+    font-size: 1.2rem;
     line-height: 1.5;
     margin-bottom: 10px;
 }
 
 /* Style the primary link */
 .login-prompt .primary-link {
-    color: #2F9B6A; /* Green link */
+    color: #2F9B6A;
     font-weight: bold;
     text-decoration: none;
     transition: color 0.3s ease;
@@ -514,10 +748,5 @@
 
 /* Hover effect on the login link */
 .login-prompt .primary-link:hover {
-    color: #1d6f49; /* Darker green on hover */
+    color: #1d6f49;
 }
-
-
-
-
-

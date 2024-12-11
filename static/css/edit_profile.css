@@ -61,9 +61,9 @@ label {
     margin-bottom: 15px;
     border: 3px solid #2F9B6A;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
-    display: block; /* Make it a block element for centering */
-    margin-left: auto; /* Center horizontally */
-    margin-right: auto; /* Center horizontally */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Buttons Styling */
@@ -83,11 +83,11 @@ button {
     background-color: #2F9B6A;
     color: #fff;
     margin-top: 10px;
-    width: 140px; /* Adjust size of the button */
-    padding: 10px; /* Adjust padding to make it smaller */
-    display: block; /* Make the button block-level to center it */
-    margin-left: auto; /* Center horizontally */
-    margin-right: auto; /* Center horizontally */
+    width: 140px;
+    padding: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .save-button:hover {
@@ -95,13 +95,12 @@ button {
     transform: scale(1.05);
 }
 
-/* Make sure the remove picture button is also centered */
 .remove-picture-button {
     background-color: #cc3333;
     color: #fff;
     margin-bottom: 15px;
-    width: 140px; /* Set fixed width */
-    padding: 10px; /* Adjust padding to match the size */
+    width: 140px;
+    padding: 10px;
     display: block;
     margin-left: auto;
     margin-right: auto;

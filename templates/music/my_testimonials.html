@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}My Feedbacks{% endblock %}
+
+{% block content %}
+    <div class="feedbacks-container">
+        <h2>My Feedbacks</h2>
+        {% if testimonials %}
+            <ul class="testimonial-list">
+                {% for testimonial in testimonials %}
+                    <li class="testimonial-item d-flex justify-content-between align-items-center">
+                        <span>{{ testimonial.text }}</span>
+                        <a href="{% url 'delete_testimonial' testimonial.pk %}"
+                           class="btn btn-danger btn-sm delete-btn">
+                            Delete
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>You have not submitted any feedbacks yet.</p>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,5 +1,5 @@
 from django import forms
-from Echo.music.models import Playlist, Track
+from Echo.music.models import Playlist, Track, Testimonial
 
 
 class PlaylistForm(forms.ModelForm):
@@ -26,3 +26,18 @@ class AddTrackToPlaylistForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+
+class TestimonialForm(forms.ModelForm):
+    class Meta:
+        model = Testimonial
+        fields = ['text']
+        widgets = {
+            'text': forms.Textarea(attrs={
+                'class': 'form-control',
+                'placeholder': 'Write your feedback...',
+                'rows': 5
+            }),
+        }
+        labels = {
+            'text': 'Your Feedback',
+        }

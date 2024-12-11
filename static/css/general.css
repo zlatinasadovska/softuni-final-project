@@ -33,54 +33,53 @@ header nav .nav-container {
     padding: 10px 20px;
     max-width: 1200px;
     margin: 0 auto;
-    gap: 20px; /* Add space between flex items */
+    gap: 20px;
 }
 
 /* Logo */
 header nav .logo-container {
     flex: 0 1 auto;
-    margin-right: 20px; /* Add spacing between logo and nav links */
+    margin-right: 20px;
 }
 
 header nav .logo-container .logo {
-    max-height: 60px;  /* Increased max-height to make the logo bigger */
+    max-height: 60px;
 }
 
 /* Navigation Links Container (this is key for centering) */
 header nav .nav-links-container {
     display: flex;
-    justify-content: center; /* Center the navigation links horizontally */
-    flex: 1; /* This will allow this container to take up all the available space between logo and search */
+    justify-content: center;
+    flex: 1;
 }
 
 /* Navigation Links */
 header nav .nav-links {
     display: flex;
-    gap: 30px; /* Increased space between buttons */
+    gap: 30px;
     list-style: none;
-    align-items: center; /* Align the nav items vertically in the center */
+    align-items: center;
 }
 
 header nav .nav-links li a {
     text-decoration: none;
     color: #fff;
-    font-size: 18px;  /* Increased font size */
-    padding: 12px 18px;  /* Increased padding for bigger buttons */
+    font-size: 18px;
+    padding: 12px 18px;
     border-radius: 5px;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 /* Hover effect for the navigation links */
 header nav .nav-links li a:hover {
-    background-color: #2F9B6A; /* Green color for hover */
+    background-color: #2F9B6A;
     transform: scale(1.1);
 }
-
 
 /* Search Form */
 .search-container {
     display: inline-block;
-    margin-right: 20px; /* Add space between search bar and settings */
+    margin-right: 20px;
 }
 
 /* Settings Button */
@@ -94,12 +93,12 @@ header nav .nav-links li a:hover {
     border: none;
     font-weight: bold;
     transition: background-color 0.3s;
-    margin-left: 20px;  /* Add space between search and settings button */
+    margin-left: 20px;
 }
 
 /* Hover effect for the settings button */
 .settings-btn:hover {
-    background-color: #2F9B6A; /* Green color for hover */
+    background-color: #2F9B6A;
 }
 
 /* Dropdown Menu Container */
@@ -110,7 +109,7 @@ header nav .nav-links li a:hover {
 
 /* Hidden Checkbox (used for controlling visibility of the dropdown) */
 .settings-toggle {
-    display: none; /* Hide checkbox */
+    display: none;
 }
 
 /* Dropdown Menu */
@@ -140,7 +139,7 @@ header nav .nav-links li a:hover {
 
 /* Hover effect for dropdown items */
 .dropdown-menu .dropdown-item:hover {
-    background-color: red; /* Green color for hover */
+    background-color: red;
 }
 
 /* Show the Dropdown Menu when Checkbox is checked */
@@ -155,6 +154,6 @@ footer {
     padding: 15px 0;
     font-size: 14px;
     color: #b3b3b3;
-    margin-top: auto; /* Pushes the footer to the bottom */
+    margin-top: auto;
     width: 100%;
 }

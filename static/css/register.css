@@ -3,28 +3,28 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: calc(100vh - 80px); /* Adjust for header/footer */
+    min-height: calc(100vh - 80px);
     padding: 20px;
-    background-color: #000; /* Maintain the dark background */
+    background-color: #000;
 }
 
 /* Style the register box */
 .register-box {
-    max-width: 450px; /* Slightly larger box for registration */
+    max-width: 450px;
     width: 100%;
-    padding: 30px; /* Uniform padding */
-    background-color: #121212; /* Dark background for the form */
-    border-radius: 10px; /* Rounded corners for consistency */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7); /* Consistent shadow style */
+    padding: 30px;
+    background-color: #121212;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
     text-align: center;
 }
 
 /* Heading inside the box */
 .register-box h2 {
     color: #fff;
-    font-size: 28px; /* Larger heading size */
+    font-size: 28px;
     margin-bottom: 20px;
-    border-bottom: 3px solid #2F9B6A; /* Green underline for emphasis */
+    border-bottom: 3px solid #2F9B6A;
     padding-bottom: 10px;
 }
 
@@ -33,12 +33,12 @@
 .register-box form input[type="password"],
 .register-box form input[type="email"],
 .register-box form select {
-    width: 100%; /* Full-width fields */
-    padding: 12px; /* Consistent padding */
+    width: 100%;
+    padding: 12px;
     margin-bottom: 15px;
     border: 1px solid #333;
     border-radius: 5px;
-    background-color: #121212; /* Dark background for inputs */
+    background-color: #121212;
     color: #fff;
     font-size: 16px;
 }
@@ -49,39 +49,39 @@
 .register-box form input[type="email"]:focus,
 .register-box form select:focus {
     outline: none;
-    border-color: #2F9B6A; /* Green border on focus */
+    border-color: #2F9B6A;
     box-shadow: 0 0 10px rgba(47, 155, 106, 0.8);
 }
 
 /* Submit button */
 .register-box form button {
-    width: 140px; /* Consistent button size */
-    padding: 12px; /* Consistent padding */
-    background-color: #2F9B6A; /* Green background */
+    width: 140px;
+    padding: 12px;
+    background-color: #2F9B6A;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px; /* Maintain consistent button font size */
+    font-size: 16px;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    margin-top: 20px; /* Spacing above button */
-    display: block; /* Center button */
-    margin-left: auto; /* Center horizontally */
-    margin-right: auto; /* Center horizontally */
+    margin-top: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Button hover effect */
 .register-box form button:hover {
-    background-color: #257e56; /* Darker green on hover */
+    background-color: #257e56;
     transform: scale(1.05);
 }
 
 /* Error messages styling */
 .error-messages {
-    color: #FF6F61; /* Bright red for errors */
+    color: #FF6F61;
     font-size: 14px;
     margin: 10px 0;
-    text-align: left; /* Align errors to the left */
+    text-align: left;
 }
 
 /* Form group labels */
@@ -99,12 +99,12 @@
 }
 
 .register-box p a {
-    color: #2F9B6A; /* Green link */
+    color: #2F9B6A;
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
 }
 
 .register-box p a:hover {
-    color: #1d6f49; /* Darker green on hover */
+    color: #1d6f49;
 }

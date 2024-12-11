@@ -3,14 +3,14 @@
 {% block title %}Login - Echo Music{% endblock %}
 
 {% block content %}
-<main class="login-page">
-    <div class="login-box">
-        <h1>Login to Echo!</h1>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Login</button>
-        </form>
-    </div>
-</main>
+    <main class="login-page">
+        <div class="login-box">
+            <h1>Login to Echo!</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </main>
 {% endblock %}

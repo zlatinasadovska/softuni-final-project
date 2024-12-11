@@ -3,59 +3,59 @@
 {% block title %}{{ spotify_artist.name }} - Echo Music{% endblock %}
 
 {% block content %}
-<div class="artist-details-container">
-    <h1 class="artist-title">{{ spotify_artist.name }}</h1>
+    <div class="artist-details-container">
+        <h1 class="artist-title">{{ spotify_artist.name }}</h1>
 
-    {% if spotify_artist.profile_picture %}
-        <div class="artist-image">
-            <img src="{{ spotify_artist.profile_picture }}" alt="{{ spotify_artist.name }}'s profile picture">
+        {% if spotify_artist.profile_picture %}
+            <div class="artist-image">
+                <img src="{{ spotify_artist.profile_picture }}" alt="{{ spotify_artist.name }}'s profile picture">
+            </div>
+        {% endif %}
+
+        <div class="artist-info">
+            <p><strong>Genres:</strong> {{ spotify_artist.genres }}</p>
         </div>
-    {% endif %}
 
-    <div class="artist-info">
-        <p><strong>Genres:</strong> {{ spotify_artist.genres }}</p>
+        <section class="albums-section">
+            <h2>Albums</h2>
+            <ul class="albums-list">
+                {% for album in albums %}
+                    <li>
+                        <a href="{% url 'album_detail' spotify_id=album.spotify_id %}" class="album-link">
+                            {{ album.title }} - {{ album.release_date }}
+                        </a>
+                    </li>
+                {% empty %}
+                    <li>No albums available.</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <section class="tracks-section">
+            <h2>Tracks</h2>
+            <ul class="tracks-list">
+                {% for track in tracks %}
+                    <li>
+                        <a href="{% url 'track_detail' spotify_id=track.spotify_id %}" class="track-link">
+                            {{ track.title }}
+                        </a>
+                        - {{ track.album.title }}
+
+                        {% if track.preview_url %}
+                            <div class="audio-player">
+                                <audio controls>
+                                    <source src="{{ track.preview_url }}" type="audio/mp3">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+                        {% else %}
+                            <p>No audio preview available.</p>
+                        {% endif %}
+                    </li>
+                {% empty %}
+                    <li>No tracks available.</li>
+                {% endfor %}
+            </ul>
+        </section>
     </div>
-
-    <section class="albums-section">
-        <h2>Albums</h2>
-        <ul class="albums-list">
-            {% for album in albums %}
-                <li>
-                    <a href="{% url 'album_detail' spotify_id=album.spotify_id %}" class="album-link">
-                        {{ album.title }} - {{ album.release_date }}
-                    </a>
-                </li>
-            {% empty %}
-                <li>No albums available.</li>
-            {% endfor %}
-        </ul>
-    </section>
-
-    <section class="tracks-section">
-        <h2>Tracks</h2>
-        <ul class="tracks-list">
-            {% for track in tracks %}
-                <li>
-                    <a href="{% url 'track_detail' spotify_id=track.spotify_id %}" class="track-link">
-                        {{ track.title }}
-                    </a>
-                    - {{ track.album.title }}
-
-                    {% if track.preview_url %}
-                        <div class="audio-player">
-                            <audio controls>
-                                <source src="{{ track.preview_url }}" type="audio/mp3">
-                                Your browser does not support the audio element.
-                            </audio>
-                        </div>
-                    {% else %}
-                        <p>No audio preview available.</p>
-                    {% endif %}
-                </li>
-            {% empty %}
-                <li>No tracks available.</li>
-            {% endfor %}
-        </ul>
-    </section>
-</div>
 {% endblock %}

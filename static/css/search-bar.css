@@ -13,8 +13,8 @@ header nav .search-container form {
     padding: 8px 12px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    width: 100%; /* Stretch the search bar */
-    max-width: 400px; /* Set a maximum width */
+    width: 100%;
+    max-width: 400px;
 }
 
 header nav .search-container form input {
@@ -23,7 +23,7 @@ header nav .search-container form input {
     color: #fff;
     outline: none;
     font-size: 14px;
-    flex: 1; /* Take available space */
+    flex: 1;
     padding: 0 5px;
 }
 

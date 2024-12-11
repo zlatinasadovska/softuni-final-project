@@ -1,5 +1,5 @@
 from django.contrib import admin
-from Echo.music.models import Artist, Album, Track, Playlist
+from Echo.music.models import Artist, Album, Track, Playlist, Testimonial
 
 
 @admin.register(Artist)
@@ -31,3 +31,14 @@ class PlaylistAdmin(admin.ModelAdmin):
     list_filter = ('user',)
     search_fields = ('name', 'user__email')
     ordering = ('created_at',)
+
+
+@admin.register(Testimonial)
+class TestimonialAdmin(admin.ModelAdmin):
+    list_display = ('user', 'text_preview', 'created_at')
+    search_fields = ('user__username', 'text')
+    list_filter = ('created_at',)
+
+    def text_preview(self, obj):
+        return obj.text[:50]
+    text_preview.short_description = 'Text Preview'

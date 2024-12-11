@@ -4,41 +4,41 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding: 50px 20px; /* Increase top padding for better spacing */
-    max-width: 900px; /* Limit the max width */
+    padding: 50px 20px;
+    max-width: 900px;
     margin: 40px auto;
     background-color: #181818;
-    border-radius: 12px; /* Slightly rounded corners for a softer feel */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7); /* Stronger shadow for depth */
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
     color: #b3b3b3;
 }
 
 /* Playlist Card */
 .playlist-card {
     width: 100%;
-    max-width: 600px; /* Keep the width consistent */
-    margin-bottom: 30px; /* More space between playlist cards */
-    background-color: #000000; /* Slightly lighter black for better contrast */
-    border-radius: 12px; /* Rounded corners */
-    padding: 25px; /* Increased padding for a more spacious feel */
+    max-width: 600px;
+    margin-bottom: 30px;
+    background-color: #000000;
+    border-radius: 12px;
+    padding: 25px;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    transition: box-shadow 0.3s ease; /* Smooth hover effect */
+    transition: box-shadow 0.3s ease;
 }
 
 .playlist-card:hover {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7); /* Hover effect for cards */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);
 }
 
 /* Playlist Title */
 .playlist-title {
-    font-size: 30px; /* Slightly larger title for emphasis */
+    font-size: 30px;
     color: #fff;
     margin-bottom: 20px;
     text-align: center;
-    font-weight: 600; /* Bold title for prominence */
+    font-weight: 600;
 }
 
 /* Playlist Tracks List */
@@ -53,45 +53,45 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 25px; /* Add more padding for spacious feel */
+    padding: 15px 25px;
     background-color: #1a1a1a;
     border-radius: 8px;
-    margin-bottom: 15px; /* More spacing between items */
+    margin-bottom: 15px;
     width: 100%;
     box-sizing: border-box;
-    transition: background-color 0.3s ease; /* Smooth hover effect */
+    transition: background-color 0.3s ease;
 }
 
 .playlist-item:hover {
-    background-color: #333; /* Lighter hover effect */
+    background-color: #333;
 }
 
 /* Track Name */
 .track-name {
     text-decoration: none;
     color: #2F9B6A;
-    font-weight: 500; /* Slightly lighter weight for readability */
+    font-weight: 500;
     flex-grow: 1;
-    font-size: 18px; /* Slightly larger font size */
+    font-size: 18px;
     white-space: nowrap;
     overflow: visible;
     text-overflow: unset;
-    padding-right: 30px; /* Ensure space for remove button */
-    max-width: calc(100% - 120px); /* Adjust space for remove button */
-    letter-spacing: 0.5px; /* Slight letter spacing for readability */
+    padding-right: 30px;
+    max-width: calc(100% - 120px);
+    letter-spacing: 0.5px;
 }
 
-/* Remove Button (Right aligned) */
+/* Remove Button */
 .delete-button {
     background-color: #FF6F61;
     color: #fff;
     border: none;
-    padding: 10px 20px; /* More padding for better button size */
+    padding: 10px 20px;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 15px; /* Larger button text */
+    font-size: 15px;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    margin-left: auto; /* Push button to the right */
+    margin-left: auto;
     display: flex;
     align-items: center;
 }
@@ -105,25 +105,25 @@
 /* Container for the buttons (Change Name and Add Track Buttons) */
 .playlist-actions {
     display: flex;
-    flex-direction: column; /* Stack buttons vertically */
-    align-items: center; /* Center buttons horizontally */
-    gap: 12px; /* Add space between buttons */
-    margin-top: 10px; /* Reduced space before the buttons */
-    margin-bottom: 20px; /* Add space after the buttons */
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 /* Add Track Button */
 .add-track-button {
     background-color: #2F9B6A;
     color: #fff;
-    font-size: 13px; /* Smaller font size */
-    padding: 6px 12px; /* Smaller padding */
+    font-size: 13px;
+    padding: 6px 12px;
     border: none;
-    border-radius: 6px; /* Slightly smaller border-radius */
+    border-radius: 6px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    display: inline-block; /* Ensure the button takes up only necessary width */
-    text-decoration: none; /* Remove underline */
+    display: inline-block;
+    text-decoration: none;
 }
 
 /* Add Track Button hover effect */
@@ -136,14 +136,14 @@
 .primary-button {
     background-color: #2F9B6A;
     color: #fff;
-    padding: 6px 12px; /* Smaller padding */
+    padding: 6px 12px;
     border: none;
-    border-radius: 6px; /* Slightly smaller border-radius */
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 13px; /* Smaller font size */
+    font-size: 13px;
     transition: background-color 0.3s ease;
-    display: inline-block; /* Ensure the button takes up only necessary width */
-    text-decoration: none; /* Remove underline */
+    display: inline-block;
+    text-decoration: none;
 }
 
 /* Change Name Button hover effect */
@@ -179,7 +179,7 @@
     background-color: #000000;
     border-radius: 12px;
     text-align: center;
-    max-width: 900px; /* Restrict width for a professional layout */
+    max-width: 900px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
 }
 
@@ -195,10 +195,10 @@
     list-style: none;
     padding: 0;
     margin: 0 auto;
-    display: grid; /* Grid layout for symmetry */
-    grid-template-columns: 1fr; /* Single column, but flexible for wider screens */
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 20px;
-    max-width: 600px; /* Align to the section width */
+    max-width: 600px;
 }
 
 /* Playlist Item */
@@ -224,9 +224,9 @@
     color: #2F9B6A;
     font-weight: 600;
     text-decoration: none;
-    flex-grow: 1; /* Expand name to use available space */
+    flex-grow: 1;
     text-align: left;
-    margin-right: 300px; /* Add space between name and delete button */
+    margin-right: 300px;
 }
 
 /* Delete Button */
@@ -275,48 +275,47 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px; /* Adds space above the sorting form */
-    gap: 10px; /* Space between the label and the dropdown */
-    margin-bottom: 30px; /* Adds space after the form to separate it from the playlist */
+    margin-top: 20px;
+    gap: 10px;
+    margin-bottom: 30px;
 }
 
 /* Sorting Label */
 .sorting-form label {
     font-size: 16px;
-    color: white; /* Light gray text */
-    font-weight: 500; /* Medium weight for readability */
-    text-align: center; /* Center the label */
-    margin-bottom: 0; /* Remove space below the label */
+    color: white;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 0;
 }
 
 /* Sorting Dropdown */
 .sorting-dropdown {
-    background-color: #2F2F2F; /* Dark background for dropdown */
-    color: #fff; /* White text */
-    padding: 8px 15px; /* Adequate padding for ease of use */
-    font-size: 14px; /* Slightly larger font for readability */
-    border: 1px solid #2F9B6A; /* Border using the app's primary color */
+    background-color: #2F2F2F;
+    color: #fff;
+    padding: 8px 15px;
+    font-size: 14px;
+    border: 1px solid #2F9B6A;
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    width: 200px; /* Limit width for consistency */
+    width: 200px;
 }
 
 /* Dropdown Hover and Focus */
 .sorting-dropdown:hover,
 .sorting-dropdown:focus {
-    background-color: #1d1d1d; /* Darker background on hover/focus */
-    transform: scale(1.03); /* Slight enlargement on hover/focus */
+    background-color: #1d1d1d;
+    transform: scale(1.03);
 }
 
-/* Apply Button for No JavaScript */
 .sorting-form noscript {
     display: block;
 }
 
 /* Apply Button Styling */
 .sorting-form noscript button {
-    background-color: #2F9B6A; /* App primary color */
+    background-color: #2F9B6A;
     color: #fff;
     font-size: 14px;
     padding: 8px 16px;
@@ -329,14 +328,14 @@
 }
 
 .sorting-form noscript button:hover {
-    background-color: #257e56; /* Darker shade on hover */
+    background-color: #257e56;
 }
 
-/* Active Sorting Option (if using links instead of dropdown) */
+/* Active Sorting Option */
 .sort-options a.active {
     font-weight: bold;
-    color: #2F9B6A; /* Primary color for active state */
-    border-bottom: 2px solid #2F9B6A; /* Active underline */
+    color: #2F9B6A;
+    border-bottom: 2px solid #2F9B6A;
 }
 
 /* Hover Effect for Sorting Options Links */
@@ -344,7 +343,3 @@
     color: #2F9B6A;
     transform: scale(1.05);
 }
-
-
-
-

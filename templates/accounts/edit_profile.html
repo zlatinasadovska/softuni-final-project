@@ -2,46 +2,46 @@
 {% block title %}Edit Profile - Echo Music{% endblock %}
 
 {% block content %}
-<div class="edit-profile-container">
-    <h1>Edit Your Profile</h1>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
+    <div class="edit-profile-container">
+        <h1>Edit Your Profile</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
 
-        <!-- Update Username -->
-        <label for="username">Change Username</label>
-        <input type="text" name="username" id="username" value="{{ user.username }}" class="form-input">
+            <!-- Update Username -->
+            <label for="username">Change Username</label>
+            <input type="text" name="username" id="username" value="{{ user.username }}" class="form-input">
 
-        <!-- Update Profile Picture -->
-        <label for="profile_picture">Change Profile Picture</label>
-        {% if user.profile_picture %}
-            <img src="{{ user.profile_picture.url }}" alt="Profile Picture" class="current-profile-picture">
-            <button type="submit" name="remove_picture" class="remove-picture-button">Remove Picture</button>
-        {% endif %}
-        <input type="file" name="profile_picture" id="profile_picture" class="form-input">
+            <!-- Update Profile Picture -->
+            <label for="profile_picture">Change Profile Picture</label>
+            {% if user.profile_picture %}
+                <img src="{{ user.profile_picture.url }}" alt="Profile Picture" class="current-profile-picture">
+                <button type="submit" name="remove_picture" class="remove-picture-button">Remove Picture</button>
+            {% endif %}
+            <input type="file" name="profile_picture" id="profile_picture" class="form-input">
 
-        <!-- Current Password for Change -->
-        <label for="current_password">Current Password</label>
-        <input type="password" name="current_password" id="current_password" class="form-input">
+            <!-- Current Password for Change -->
+            <label for="current_password">Current Password</label>
+            <input type="password" name="current_password" id="current_password" class="form-input">
 
-        <!-- New Password -->
-        <label for="new_password">New Password</label>
-        <input type="password" name="new_password" id="new_password" class="form-input">
+            <!-- New Password -->
+            <label for="new_password">New Password</label>
+            <input type="password" name="new_password" id="new_password" class="form-input">
 
-        <!-- Confirm New Password -->
-        <label for="confirm_new_password">Confirm New Password</label>
-        <input type="password" name="confirm_new_password" id="confirm_new_password" class="form-input">
+            <!-- Confirm New Password -->
+            <label for="confirm_new_password">Confirm New Password</label>
+            <input type="password" name="confirm_new_password" id="confirm_new_password" class="form-input">
 
-        <!-- Submit Changes -->
-        <button type="submit" class="save-button">Save Changes</button>
+            <!-- Submit Changes -->
+            <button type="submit" class="save-button">Save Changes</button>
 
-        <!-- Display messages -->
-        {% if messages %}
-            <ul class="message-list">
-                {% for message in messages %}
-                    <li class="message-item">{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-    </form>
-</div>
+            <!-- Display messages -->
+            {% if messages %}
+                <ul class="message-list">
+                    {% for message in messages %}
+                        <li class="message-item">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </form>
+    </div>
 {% endblock %}

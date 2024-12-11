@@ -107,32 +107,49 @@
 /* Edit Profile Button */
 .edit-profile-button {
     display: inline-block;
-    padding: 8px 20px; /* Smaller padding */
+    padding: 8px 20px;
     background-color: #2F9B6A;
     color: #fff;
-    font-size: 14px; /* Smaller font size */
+    font-size: 14px;
     font-weight: bold;
     text-align: center;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    text-decoration: none;  /* Remove default link styling */
-    margin-bottom: 15px;  /* Space from other elements */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Optional shadow for depth */
+    text-decoration: none;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .edit-profile-button:hover {
     background-color: #257e56;
-    transform: scale(1.05); /* Slightly increase button size for effect */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); /* Darker shadow on hover */
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
 }
 
 .edit-profile-button:active {
-    background-color: #1e6d4e; /* Darker shade when button is pressed */
-    transform: scale(1.02); /* Slight shrink effect */
+    background-color: #1e6d4e;
+    transform: scale(1.02);
 }
 
 .edit-profile-button:focus {
-    outline: none;  /* Remove outline on focus */
-    box-shadow: 0 0 5px rgba(47, 155, 106, 0.8); /* Green glow when focused */
+    outline: none;
+    box-shadow: 0 0 5px rgba(47, 155, 106, 0.8);
+}
+
+.your-feedbacks-btn {
+    background-color: #6c63ff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    margin-bottom: 10px;
+}
+
+.your-feedbacks-btn:hover {
+    background-color: #5548d3;
+    text-decoration: none;
 }

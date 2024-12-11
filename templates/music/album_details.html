@@ -7,9 +7,10 @@
         <h1>{{ album.title }} - {{ album.artist.name }}</h1>
         <p>Released on: {{ album.release_date }}</p>
 
-        <!-- Display album cover image -->
         {% if album.cover_image %}
             <img src="{{ album.cover_image }}" alt="{{ album.title }} cover image">
+        {% else %}
+            <p>No album cover</p>
         {% endif %}
 
         <h2>Tracks</h2>

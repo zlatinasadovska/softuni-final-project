@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% load static %}
+
 {% block title %}Home - Echo Music{% endblock %}
 
 {% block content %}
-
     <header>
         <nav>
             <div class="nav-container">
@@ -35,7 +35,8 @@
                 <!-- Search Form -->
                 <div class="search-container">
                     <form method="get" action="{% url 'search' %}">
-                        <input type="text" name="q" placeholder="Search for Tracks, Albums, or Artists">
+                        <input type="text" name="q" placeholder="Search for Tracks, Albums, or Artists"
+                               aria-label="Search">
                         <button type="submit">Search</button>
                     </form>
                 </div>
@@ -46,7 +47,6 @@
                         <input type="checkbox" id="settings-toggle" class="settings-toggle">
                         <label for="settings-toggle" class="settings-btn">Settings</label>
                         <ul class="dropdown-menu">
-                            <!-- Remove Logout and keep Delete Profile -->
                             <li><a href="{% url 'delete_profile' %}" class="dropdown-item">Delete Profile</a></li>
                         </ul>
                     </div>
@@ -62,44 +62,49 @@
                 <h1 class="hero-title">Welcome back, <span class="highlight">{{ user.username }}!</span></h1>
             </div>
 
-            <div class="recommendations-section">
-            <h2 class="section-title">Recommended</h2>
-            <p class="section-description">Curated artists just for you.</p>
-
-            <!-- Artists Section -->
-            <div class="recommendations-container">
-                <h3 class="section-subtitle">Featured Artists</h3>
-                <div class="recommendations-items">
-                    {% for artist in featured_artists %}
-                        <a href="{% url 'artist_detail' artist.pk %}" class="recommendation-item">
-                            <!-- Check if the artist has an image -->
-                            {% if artist.profile_picture %}
-                                <div class="recommendation-image-container">
-                                    <img src="{{ artist.profile_picture }}" alt="{{ artist.name }}"
-                                         class="recommendation-image">
-                                </div>
-                            {% else %}
-                                <div class="recommendation-image-container">
-                                    <img src="{% static 'images/logo.png' %}" alt="Default Image"
-                                         class="recommendation-image default-logo">
-                                </div>
-                            {% endif %}
-                            <div class="recommendation-info">
-                                <h3>{{ artist.name }}</h3>
-                                <p>Explore</p>
-                            </div>
-                        </a>
-                    {% empty %}
-                        <p>No featured artists available.</p>
-                    {% endfor %}
-                </div>
+            <div class="feedback-section">
+                <a href="{% url 'give_testimonial' %}" class="btn btn-primary give-feedback-btn">
+                    Give Feedback
+                </a>
             </div>
 
+            <div class="recommendations-section">
+                <h2 class="section-title">Recommended</h2>
+                <p class="section-description">Curated artists just for you.</p>
+                <!-- Artists Section -->
+                <div class="recommendations-container">
+                    <h3 class="section-subtitle">Featured Artists</h3>
+                    <div class="recommendations-items">
+                        {% for artist in featured_artists %}
+                            <a href="{% url 'artist_detail' artist.pk %}" class="recommendation-item">
+                                {% if artist.profile_picture %}
+                                    <div class="recommendation-image-container">
+                                        <img src="{{ artist.profile_picture }}" alt="{{ artist.name }}"
+                                             class="recommendation-image">
+                                    </div>
+                                {% else %}
+                                    <div class="recommendation-image-container">
+                                        <img src="{% static 'images/logo.png' %}" alt="Default Image"
+                                             class="recommendation-image default-logo">
+                                    </div>
+                                {% endif %}
+                                <div class="recommendation-info">
+                                    <h3>{{ artist.name }}</h3>
+                                    <p>Explore</p>
+                                </div>
+                            </a>
+                        {% empty %}
+                            <p>No featured artists available.</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
         {% else %}
             <div class="hero-section">
                 <h1 class="hero-title">Welcome to <span class="highlight">Echo!</span></h1>
             </div>
 
+            <!-- Carousel Section -->
             <div class="carousel-container">
                 <div class="carousel-overlay">
                     <h1 class="carousel-text">Echoing your favorite music...</h1>
@@ -115,8 +120,8 @@
                 </div>
             </div>
 
-            <!-- Testimonial Section Begin -->
-            <section class="testimonial spad set-bg" data-setbg="img/testimonial/purple.jpg">
+            <!-- Testimonial Section -->
+            <section class="testimonial">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
@@ -127,51 +132,27 @@
                     </div>
                     <div class="row">
                         <div class="testimonial__slider owl-carousel">
-                            <div class="testimonial__item">
-                                <div class="testimonial__text">
-                                    <p>Echo makes discovering new tunes so easy!</p>
-                                </div>
-                                <div class="testimonial__author">
-                                    <div class="testimonial__author__pic">
-                                        <img src="{% static 'images/logo.png' %}" alt="Echo Logo" class="logo">
+                            {% for testimonial in testimonials %}
+                                <div class="testimonial__item">
+                                    <div class="testimonial__text">
+                                        <p>{{ testimonial.text }}</p>
                                     </div>
-                                    <div class="testimonial__author__text">
-                                        <h5>Alex Turner</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="testimonial__item">
-                                <div class="testimonial__text">
-                                    <p>I love creating playlists with Echo.</p>
-                                </div>
-                                <div class="testimonial__author">
-                                    <div class="testimonial__author__pic">
-                                        <img src="{% static 'images/logo.png' %}" alt="Echo Logo" class="logo">
-                                    </div>
-                                    <div class="testimonial__author__text">
-                                        <h5>Sophia Martinez</h5>
+                                    <div class="testimonial__author">
+                                        <div class="testimonial__author__pic">
+                                            <img src="{% static 'images/logo.png' %}" alt="Echo Logo" class="logo">
+                                        </div>
+                                        <div class="testimonial__author__text">
+                                            <h5>{{ testimonial.user.username }}</h5>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="testimonial__item">
-                                <div class="testimonial__text">
-                                    <p>Echo finds my favorite tracks in one place!</p>
-                                </div>
-                                <div class="testimonial__author">
-                                    <div class="testimonial__author__pic">
-                                        <img src="{% static 'images/logo.png' %}" alt="Echo Logo" class="logo">
-                                    </div>
-                                    <div class="testimonial__author__text">
-                                        <h5>Jackson Reed</h5>
-                                    </div>
-                                </div>
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
             </section>
-            <!-- Testimonial Section End -->
 
+            <!-- Stats Section -->
             <section class="stats-section">
                 <div class="stats-container">
                     <div class="stat-item">
@@ -189,6 +170,7 @@
                 </div>
             </section>
 
+            <!-- Quotes Section -->
             <div class="quote-section">
                 <img src="{% static 'images/quotes.jpg' %}" alt="Background Image" class="quote-background">
 

@@ -5,14 +5,14 @@
 {% block content %}
     <div class="playlist-container">
         <h2 class="playlist-heading">Create a New Playlist</h2>
-        
+
         <form method="POST" class="create-playlist-form">
             {% csrf_token %}
-            
+
             <div class="form-field">
                 {{ form.as_p }}
             </div>
-            
+
             <button type="submit" class="create-playlist-button">Create Playlist</button>
         </form>
     </div>

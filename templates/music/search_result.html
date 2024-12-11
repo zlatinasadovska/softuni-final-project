@@ -26,7 +26,6 @@
                                     <p>{{ track.album.name }}</p>
                                     <a href="{% url 'track_detail' spotify_id=track.spotify_id %}"
                                        class="result-detail-link">View Track Details</a>
-
                                 </div>
 
                                 <!-- Add to Playlist Form -->
@@ -55,7 +54,6 @@
                             <div class="result-item">
                                 <h4><a href="{% url 'album_detail' spotify_id=album.spotify_id %}"
                                        class="result-detail-link">{{ album.title }} by {{ album.artist.name }}</a></h4>
-
                             </div>
                         {% endfor %}
                     </div>

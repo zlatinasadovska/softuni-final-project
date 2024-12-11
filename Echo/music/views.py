@@ -5,11 +5,12 @@ from django.http import HttpResponse, HttpResponseForbidden, Http404
 from django.shortcuts import redirect, get_object_or_404, render
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, CreateView, UpdateView
-from Echo.music.forms import PlaylistForm
-from Echo.music.models import Artist, Album, Track, Playlist
+from Echo.music.forms import PlaylistForm, TestimonialForm
+from Echo.music.models import Artist, Album, Track, Playlist, Testimonial
 from Echo.spotify.spotify_helpers import import_track, import_album, search_spotify, import_artist
 
 
+# View for displaying details of a specific artist
 class ArtistDetailView(DetailView):
     model = Artist
     template_name = 'music/artist_details.html'
@@ -19,52 +20,48 @@ class ArtistDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         artist = self.get_object()
 
-        # Fetch detailed data for the artist from Spotify and save it
+        # Fetch artist data from Spotify if available
         spotify_artist = import_artist(artist.spotify_id)
-
         if spotify_artist:
             context['spotify_artist'] = spotify_artist
             context['albums'] = spotify_artist.albums.all()
-            context['tracks'] = spotify_artist.tracks.all()  # Ensure tracks have preview_url
+            context['tracks'] = spotify_artist.tracks.all()
 
         return context
 
 
+# View for displaying details of a specific album
 class AlbumDetailView(DetailView):
     model = Album
     template_name = 'music/album_details.html'
     context_object_name = 'album'
 
-    def get_object(self):
-        # Retrieve the album using the passed spotify_id
+    def get_object(self, queryset=None):
         spotify_id = self.kwargs.get('spotify_id')
-        album = get_object_or_404(Album, spotify_id=spotify_id)
-        return album
+        queryset = queryset or self.get_queryset()
+        return get_object_or_404(queryset, spotify_id=spotify_id)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         album = self.get_object()
 
-        # Fetch Spotify tracks for the album
         tracks = album.tracks.all()
 
-        # Add tracks to the context
         context['tracks'] = tracks
         return context
 
 
+# View for displaying details of a specific track
 class TrackDetailView(DetailView):
     model = Track
     template_name = 'music/track_details.html'
     context_object_name = 'spotify_track'
 
     def get_object(self, queryset=None):
-        """Retrieve the track based on the spotify_id from the URL."""
         spotify_id = self.kwargs.get('spotify_id')
         track = Track.objects.filter(spotify_id=spotify_id).first()
 
         if not track:
-            # If track doesn't exist in the database, fetch it from Spotify
             track = import_track(spotify_id)
             if not track:
                 raise Http404("Track not found or unable to fetch from Spotify.")
@@ -72,11 +69,10 @@ class TrackDetailView(DetailView):
         return track
 
     def get_context_data(self, **kwargs):
-        """Add additional context for the template."""
         context = super().get_context_data(**kwargs)
         track = self.get_object()
 
-        # Calculate the duration in minutes and seconds and add it to the context
+        # Calculate and display the track duration in minutes and seconds
         if track.duration_ms:
             duration_minutes = track.duration_ms // 60000
             duration_seconds = (track.duration_ms % 60000) // 1000
@@ -84,12 +80,12 @@ class TrackDetailView(DetailView):
         else:
             context['duration'] = "Unknown duration"
 
-        # Add the preview_url for the track to the context (if available)
         context['preview_url'] = track.preview_url
 
         return context
 
 
+# View for displaying details of a specific playlist
 class PlaylistDetailView(DetailView):
     model = Playlist
     template_name = 'music/playlist_details.html'
@@ -99,22 +95,20 @@ class PlaylistDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         playlist = self.get_object()
 
-        # Get the sorting order from the GET parameter
         sort_order = self.request.GET.get('sort', 'default')
 
-        # Sort the tracks based on the sorting order
         tracks = playlist.tracks.all()
         if sort_order == 'alphabetical':
             tracks = tracks.order_by('title')
         elif sort_order == 'reverse_alphabetical':
             tracks = tracks.order_by('-title')
 
-        # Add data to the context
         context['tracks'] = tracks
         context['sort_order'] = sort_order
         return context
 
 
+# View for creating a new playlist, available to logged-in users
 class CreatePlaylistView(LoginRequiredMixin, CreateView):
     model = Playlist
     form_class = PlaylistForm
@@ -134,6 +128,7 @@ class CreatePlaylistView(LoginRequiredMixin, CreateView):
         return reverse_lazy('playlist_detail', kwargs={'pk': self.object.pk})
 
 
+# View for deleting a playlist
 @login_required
 def delete_playlist(request, pk):
     playlist = get_object_or_404(Playlist, pk=pk, user=request.user)
@@ -142,6 +137,7 @@ def delete_playlist(request, pk):
     return redirect('profile')
 
 
+# View for removing a track from a playlist
 def remove_track_from_playlist(request, playlist_id, track_id):
     if not request.user.is_authenticated:
         return HttpResponseForbidden("You must be logged in to perform this action.")
@@ -155,15 +151,18 @@ def remove_track_from_playlist(request, playlist_id, track_id):
     return redirect('playlist_detail', pk=playlist.pk)
 
 
+# View for performing a search for tracks, albums, and artists
 def search_view(request):
     query = request.GET.get('q', '').strip()
     tracks, albums, artists = [], [], []
 
     if query:
+        # Search in the local database first
         tracks = Track.objects.filter(title__icontains=query)
         albums = Album.objects.filter(title__icontains=query)
         artists = Artist.objects.filter(name__icontains=query)
 
+        # If no results, search in Spotify and import the results
         if not tracks.exists() and not albums.exists() and not artists.exists():
             spotify_results = search_spotify(query)
 
@@ -176,6 +175,7 @@ def search_view(request):
             for item in spotify_results.get('artists', []):
                 import_artist(item['id'])
 
+            # Re-fetch the local results after importing from Spotify
             tracks = Track.objects.filter(title__icontains=query)
             albums = Album.objects.filter(title__icontains=query)
             artists = Artist.objects.filter(name__icontains=query)
@@ -189,6 +189,7 @@ def search_view(request):
     return render(request, 'music/search_result.html', context)
 
 
+# View for adding a track to a playlist
 def add_to_playlist(request, track_id):
     track = get_object_or_404(Track, id=track_id)
     playlist_id = request.GET.get('playlist_id')
@@ -207,6 +208,7 @@ def add_to_playlist(request, track_id):
     return redirect('playlist_detail', pk=playlist.id)
 
 
+# View for changing the name of a playlist
 class PlaylistNameChangeView(UpdateView):
     model = Playlist
     fields = ['name']
@@ -218,3 +220,36 @@ class PlaylistNameChangeView(UpdateView):
 
     def form_valid(self, form):
         return super().form_valid(form)
+
+
+# View for submitting a testimonial
+@login_required
+def give_testimonial(request):
+    if request.method == 'POST':
+        form = TestimonialForm(request.POST)
+        if form.is_valid():
+            testimonial = form.save(commit=False)
+            testimonial.user = request.user
+            testimonial.save()
+            return redirect('home')
+    else:
+        form = TestimonialForm()
+
+    return render(request, 'music/give_testimonial.html', {'form': form})
+
+
+# View for displaying all testimonials submitted
+@login_required
+def my_testimonials(request):
+    testimonials = Testimonial.objects.filter(user=request.user)
+    return render(request, 'music/my_testimonials.html', {'testimonials': testimonials})
+
+
+# View for deleting a testimonial
+@login_required
+def delete_testimonial(request, pk):
+    testimonial = get_object_or_404(Testimonial, pk=pk, user=request.user)
+    if request.method == 'POST':
+        testimonial.delete()
+        return redirect('my_testimonials')
+    return render(request, 'music/delete_testimonial.html', {'testimonial': testimonial})
